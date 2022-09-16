@@ -1,0 +1,10 @@
+/*Variables for colors*/
+:root {
+    --basecolor: #fdf6e3;
+    --boxcolor: #eee8d5;
+    --feedbackcolor: #e7dfc5;
+    --accentcolor: #7a0019;
+    --bordercolor: #93a1a1;
+    --textcolor: #55525B;
+    --titlecolor: #27262b;
+}
