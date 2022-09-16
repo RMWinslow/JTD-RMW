@@ -1,0 +1,133 @@
+.site-nav details {
+    font-size: 14px;
+    margin-left: 1em;
+    border: 1px solid black;
+}
+
+.site-nav summary {
+    padding: 0.5rem;
+    border: 1px solid red;
+    line-height: 1;
+    display: flex;
+    justify-content: space-between;
+}
+summary::after {
+    content: ' ▼';
+}
+details[open] summary:after {
+    content: " ▲";
+}
+
+
+
+.nav-list {
+    padding: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+    list-style: none;
+}
+.nav-list .nav-list-item {
+    font-size: 14px !important;
+    position: relative;
+    margin: 0;
+}
+.nav-list .nav-list-item .nav-list-link {
+    display: block;
+    min-height: 3rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    line-height: 2rem;
+    padding-right: 3rem;
+    padding-left: 1rem;
+}
+@media (min-width: 50rem) {
+    .nav-list .nav-list-item .nav-list-link {
+        min-height: 2rem;
+        line-height: 1rem;
+        padding-right: 2rem;
+        padding-left: 2rem;
+    }
+}
+.nav-list .nav-list-item .nav-list-link.active {
+    font-weight: 600;
+    text-decoration: none;
+}
+.nav-list .nav-list-item .nav-list-link:hover,
+.nav-list .nav-list-item .nav-list-link.active,
+.site-nav summary:hover {
+    background-image: linear-gradient(-90deg, var(--feedbackcolor) 0%, var(--feedbackcolor) 70%, #0000 100%);
+}
+.nav-list .nav-list-item .nav-list-expander {
+    position: absolute;
+    right: 0;
+    width: 3rem;
+    height: 3rem;
+    padding-top: 0.75rem;
+    padding-right: 0.75rem;
+    padding-bottom: 0.75rem;
+    padding-left: 0.75rem;
+    color: var(--accentcolor);;
+}
+@media (min-width: 50rem) {
+    .nav-list .nav-list-item .nav-list-expander {
+        width: 2rem;
+        height: 2rem;
+        padding-top: 0.5rem;
+        padding-right: 0.5rem;
+        padding-bottom: 0.5rem;
+        padding-left: 0.5rem;
+    }
+}
+.nav-list .nav-list-item .nav-list-expander:hover {
+    background-image: linear-gradient(-90deg, var(--feedbackcolor) 0%, var(--feedbackcolor) 100%);
+}
+.nav-list .nav-list-item .nav-list-expander svg {
+    transform: rotate(90deg);
+}
+.nav-list .nav-list-item > .nav-list {
+    display: none;
+    padding-left: 0.75rem;
+    list-style: none;
+}
+.nav-list .nav-list-item > .nav-list .nav-list-item {
+    position: relative;
+}
+.nav-list .nav-list-item > .nav-list .nav-list-item .nav-list-link {
+    color: #5c5962;
+}
+.nav-list .nav-list-item > .nav-list .nav-list-item .nav-list-expander {
+    color: #5c5962;
+}
+.nav-list .nav-list-item.active > .nav-list-expander svg {
+    transform: rotate(-90deg);
+}
+.nav-list .nav-list-item.active > .nav-list {
+    display: block;
+}
+.nav-category {
+    padding-top: 0.5rem;
+    padding-right: 1rem;
+    padding-bottom: 0.5rem;
+    padding-left: 1rem;
+    font-weight: 600;
+    text-align: end;
+    text-transform: uppercase;
+    border-bottom: 1px solid var(--bordercolor);
+    font-size: 11px !important;
+}
+@media (min-width: 31.25rem) {
+    .nav-category {
+        font-size: 12px !important;
+    }
+}
+@media (min-width: 50rem) {
+    .nav-category {
+        padding-right: 2rem;
+        padding-left: 2rem;
+        margin-top: 1rem;
+        text-align: start;
+    }
+    .nav-category:first-child {
+        margin-top: 0;
+    }
+}

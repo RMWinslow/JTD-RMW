@@ -21,22 +21,22 @@
 
 
 /*Details and Summary*/
-details {
+main details {
     border: 1px solid var(--bordercolor); 
     border-radius: 8px;
     display: flow-root;
 }
-summary {
+main summary {
     font-weight: bold;
     padding: 0.5em;
     background-color: var(--boxcolor);
     border-radius: 8px;
 }
-details > * {
+main details > * {
     margin-left: 0.5em;
     margin-right: 0.5em;
 }
-details > summary {
+main details > summary {
     margin: 0;
 }
 
