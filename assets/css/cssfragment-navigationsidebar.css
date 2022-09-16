@@ -11,10 +11,10 @@
     display: flex;
     justify-content: space-between;
 }
-summary::after {
+.site-nav summary::after {
     content: ' ▼';
 }
-details[open] summary:after {
+.site-nav details[open] summary:after {
     content: " ▲";
 }
 
