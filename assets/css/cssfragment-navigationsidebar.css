@@ -15,7 +15,7 @@
     background-color: var(--boxcolor);
 }
 .site-nav summary::after {
-    content: ' ◀';
+    content: ' ◄';
 }
 .site-nav details[open] > summary:after {
     content: " ▼";
