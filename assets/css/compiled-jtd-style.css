@@ -1,8 +1,9 @@
 @import url("colorscheme.css");
 @import url("extrabits.css");
 
-@import url("cssfragment-normalizeandbasics.css");
+@import url("cssfragment-normalize.css");
 
+@import url("cssfragment-basics.css");
 @import url("cssfragment-listsandthings.css");
 @import url("cssfragment-navigationsidebar.css");
 @import url("cssfragment-tables.css");
