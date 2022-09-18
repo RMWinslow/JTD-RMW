@@ -110,11 +110,11 @@ hr {
     }
 }
 
-.main-content-wrap {
+main-wrap {
     padding: 1rem;
 }
 @media (min-width: 50rem) {
-    .main-content-wrap {
+    main-wrap {
         padding: 2rem;
     }
 }
@@ -258,19 +258,19 @@ body {
     height: 1.5rem;
     color: var(--accentcolor);;
 }
-.main-content {
+main {
     line-height: 1.45;
 }
-.main-content ol,
-.main-content ul,
-.main-content dl,
-.main-content pre,
-.main-content address,
-.main-content blockquote,
-.main-content .table-wrapper {
+main ol,
+main ul,
+main dl,
+main pre,
+main address,
+main blockquote,
+main .table-wrapper {
     margin-top: 0.5em;
 }
-.main-content a {
+main a {
     overflow: hidden;
     text-overflow: ellipsis;
 }
