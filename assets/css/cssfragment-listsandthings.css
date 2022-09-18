@@ -13,46 +13,46 @@
 
 
 
-.main-content ul,
-.main-content ol {
+main ul,
+main ol {
     padding-left: 1.5em;
 }
-.main-content li .highlight {
+main li .highlight {
     margin-top: 0.25rem;
 }
 
-.main-content .task-list {
+main .task-list {
     padding-left: 0;
 }
-.main-content .task-list-item {
+main .task-list-item {
     display: flex;
     align-items: center;
 }
-.main-content .task-list-item::before {
+main .task-list-item::before {
     content: "";
 }
-.main-content .task-list-item-checkbox {
+main .task-list-item-checkbox {
     margin-right: 0.6em;
 }
-.main-content hr + * {
+main hr + * {
     margin-top: 0;
 }
-.main-content h1:first-of-type {
+main h1:first-of-type {
     margin-top: 0.5em;
 }
-.main-content dl {
+main dl {
 }
-.main-content dt {
+main dt {
     font-weight: bold;
 }
-.main-content dt::after {
+main dt::after {
     content: ":";
 }
-.main-content dd {
+main dd {
     margin-bottom: 0.5rem;
     font-size: 90%;
 }
-.main-content .anchor-heading {
+main .anchor-heading {
     position: absolute;
     right: -0.5rem;
     width: 1.5rem;
@@ -64,81 +64,81 @@
     transform: translateY(-50%);
 }
 @media (min-width: 50rem) {
-    .main-content .anchor-heading {
+    main .anchor-heading {
         right: auto;
         left: -1.5rem;
     }
 }
-.main-content .anchor-heading svg, .main-content .anchor-heading span {
+main .anchor-heading svg, main .anchor-heading span {
     display: inline-block;
     width: 100%;
     height: 100%;
     color: var(--accentcolor);;
     visibility: hidden;
 }
-.main-content .anchor-heading:hover svg, .main-content .anchor-heading:hover span,
+main .anchor-heading:hover svg, main .anchor-heading:hover span,
 anchor-heading:focus svg, anchor-heading:focus span,
-.main-content h1:hover > .anchor-heading svg, .main-content h1:hover > .anchor-heading span,
-.main-content h2:hover > .anchor-heading svg, .main-content h2:hover > .anchor-heading span,
-.main-content h3:hover > .anchor-heading svg, .main-content h3:hover > .anchor-heading span,
-.main-content h4:hover > .anchor-heading svg, .main-content h4:hover > .anchor-heading span,
-.main-content h5:hover > .anchor-heading svg, .main-content h5:hover > .anchor-heading span,
-.main-content h6:hover > .anchor-heading svg, .main-content h6:hover > .anchor-heading span {
+main h1:hover > .anchor-heading svg, main h1:hover > .anchor-heading span,
+main h2:hover > .anchor-heading svg, main h2:hover > .anchor-heading span,
+main h3:hover > .anchor-heading svg, main h3:hover > .anchor-heading span,
+main h4:hover > .anchor-heading svg, main h4:hover > .anchor-heading span,
+main h5:hover > .anchor-heading svg, main h5:hover > .anchor-heading span,
+main h6:hover > .anchor-heading svg, main h6:hover > .anchor-heading span {
     visibility: visible;
 }
-.main-content summary {
+main summary {
     cursor: pointer;
 }
-.main-content h1,
-.main-content h2,
-.main-content h3,
-.main-content h4,
-.main-content h5,
-.main-content h6 {
+main h1,
+main h2,
+main h3,
+main h4,
+main h5,
+main h6 {
     position: relative;
     margin-top: 1.5em;
     margin-bottom: 0.25em;
 }
-.main-content h1:first-child,
-.main-content h2:first-child,
-.main-content h3:first-child,
-.main-content h4:first-child,
-.main-content h5:first-child,
-.main-content h6:first-child {
+main h1:first-child,
+main h2:first-child,
+main h3:first-child,
+main h4:first-child,
+main h5:first-child,
+main h6:first-child {
     margin-top: 0.5rem;
 }
-.main-content h1 + table,
-.main-content h1 + .table-wrapper,
-.main-content h1 + .code-example,
-.main-content h1 + .highlighter-rouge,
-.main-content h2 + table,
-.main-content h2 + .table-wrapper,
-.main-content h2 + .code-example,
-.main-content h2 + .highlighter-rouge,
-.main-content h3 + table,
-.main-content h3 + .table-wrapper,
-.main-content h3 + .code-example,
-.main-content h3 + .highlighter-rouge,
-.main-content h4 + table,
-.main-content h4 + .table-wrapper,
-.main-content h4 + .code-example,
-.main-content h4 + .highlighter-rouge,
-.main-content h5 + table,
-.main-content h5 + .table-wrapper,
-.main-content h5 + .code-example,
-.main-content h5 + .highlighter-rouge,
-.main-content h6 + table,
-.main-content h6 + .table-wrapper,
-.main-content h6 + .code-example,
-.main-content h6 + .highlighter-rouge {
+main h1 + table,
+main h1 + .table-wrapper,
+main h1 + .code-example,
+main h1 + .highlighter-rouge,
+main h2 + table,
+main h2 + .table-wrapper,
+main h2 + .code-example,
+main h2 + .highlighter-rouge,
+main h3 + table,
+main h3 + .table-wrapper,
+main h3 + .code-example,
+main h3 + .highlighter-rouge,
+main h4 + table,
+main h4 + .table-wrapper,
+main h4 + .code-example,
+main h4 + .highlighter-rouge,
+main h5 + table,
+main h5 + .table-wrapper,
+main h5 + .code-example,
+main h5 + .highlighter-rouge,
+main h6 + table,
+main h6 + .table-wrapper,
+main h6 + .code-example,
+main h6 + .highlighter-rouge {
     margin-top: 1em;
 }
-.main-content h1 + p,
-.main-content h2 + p,
-.main-content h3 + p,
-.main-content h4 + p,
-.main-content h5 + p,
-.main-content h6 + p {
+main h1 + p,
+main h2 + p,
+main h3 + p,
+main h4 + p,
+main h5 + p,
+main h6 + p {
     margin-top: 0;
 }
 .aux-nav {
