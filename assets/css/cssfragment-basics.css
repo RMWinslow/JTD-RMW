@@ -105,7 +105,6 @@ hr {
 
 @media (min-width: 50rem) {
     .main {
-        position: relative;
         max-width: 800px;
         margin-left: 248px;
     }
@@ -222,16 +221,10 @@ hr {
 
 
 body {
-    position: relative;
     padding-bottom: 4rem;
     overflow-y: scroll;
 }
-@media (min-width: 50rem) {
-    body {
-        position: static;
-        padding-bottom: 0;
-    }
-}
+
 .site-footer {
     padding-right: 1rem;
     padding-left: 1rem;
