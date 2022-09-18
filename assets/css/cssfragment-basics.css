@@ -110,11 +110,11 @@ hr {
     }
 }
 
-main-wrap {
+.main-content-wrap {
     padding: 1rem;
 }
 @media (min-width: 50rem) {
-    main-wrap {
+    .main-content-wrap {
         padding: 2rem;
     }
 }
