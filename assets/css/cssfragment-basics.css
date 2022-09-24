@@ -60,7 +60,7 @@ a:not([class]) {
     text-decoration: underline;
 }
 a:not([class]):hover {
-    background-color: var(--boxcolor);
+    background-color: var(--feedbackcolor);
 }
 code {
     font-family: "SFMono-Regular", Menlo, Consolas, Monospace;
