@@ -8,12 +8,9 @@
 <link rel="shortcut icon" href="{{ '/assets/favicon.ico' | relative_url }}" type="image/x-icon">
 <link rel="stylesheet" href="{{ '/assets/css/compiled-jtd-style.css' | relative_url }}">
 
-{% unless site.plugins contains "jekyll-seo-tag" %}
-    <title>{{ page.title }} - {{ site.title }}</title>
-    {% if page.description %}
-        <meta name="Description" content="{{ page.description }}">
-    {% endif %}
-{% endunless %}
+
+<title>{{ page.title }} - {{ site.title }}</title>
+
 
 {% if site.ga_tracking != nil %}
 <!--Google Analytics Tracking. Doesn't do anything if not set up with a key.-->
@@ -49,7 +46,21 @@
 {% endif %}
 <script type="text/javascript" src="{{ '/assets/js/just-the-docs.js' | relative_url }}"></script>
 
-{% seo %}
+<!-- Begin SEO tag -->
+<meta property="og:locale" content="en_US" />
+<meta property="og:site_name" content="{{ site.title }}" />
+<meta property="og:type" content="website" />
   
+<meta property="og:title" content="{{ page.title }} - {{ site.title }}" />
+{% if page.imagepreview %}
+    <meta property="og:image" content="{{ page.imagepreview }}">
+{% endif %}
+
+{% if page.description %}
+    <meta name="description" content="{{ page.description }}">
+    <meta property="og:description" content="{{ page.description }}" />
+{% endif %}
+<!-- End SEO tag -->
+
 {% include head_custom.html %}
 </head>
