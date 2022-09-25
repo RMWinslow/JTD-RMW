@@ -7,6 +7,7 @@
 * Normalize.css - line 50
 * Basics        - line 100
 * Lists and Things
+* Breadcrumbs
 * Headers
 * Search Widget
 * Navigation Sidebar
@@ -399,7 +400,7 @@ main a {
 
 
 
-/* ------------ Lists and Things ------------ */
+/* ------------ Lists ------------ */
 /*
 88     88 .dP"Y8 888888 .dP"Y8        db    88b 88 8888b.      888888 88  88 88 88b 88  dP""b8 .dP"Y8 
 88     88 `Ybo."   88   `Ybo."       dPYb   88Yb88  8I  Yb       88   88  88 88 88Yb88 dP   `" `Ybo." 
@@ -445,64 +446,9 @@ main dd {
     margin-bottom: 0.5rem;
     font-size: 90%;
 }
-main .anchor-heading {
-    position: absolute;
-    right: -0.5rem;
-    width: 1.5rem;
-    padding-right: 0.25rem;
-    padding-left: 0.25rem;
-    overflow: visible;
-    font-size: 1rem;
-    top: 50%;
-    transform: translateY(-50%);
-}
-@media (min-width: 50rem) {
-    main .anchor-heading {
-        right: auto;
-        left: -1.5rem;
-    }
-}
-main .anchor-heading svg, main .anchor-heading span {
-    display: inline-block;
-    width: 100%;
-    height: 100%;
-    color: var(--accentcolor);;
-    visibility: hidden;
-}
 
-.aux-nav {
-    height: 100%;
-    overflow-x: auto;
-    font-size: 11px !important;
-}
-@media (min-width: 31.25rem) {
-    .aux-nav {
-        font-size: 12px !important;
-    }
-}
-.aux-nav .aux-nav-list {
-    display: flex;
-    height: 100%;
-    padding: 0;
-    margin: 0;
-    list-style: none;
-}
-.aux-nav .aux-nav-list-item {
-    display: inline-block;
-    height: 100%;
-    padding: 0;
-    margin: 0;
-}
-@media (min-width: 50rem) {
-    .aux-nav {
-        padding-right: 1rem;
-    }
-}
-@media (min-width: 50rem) {
-    .breadcrumb-nav {
-        margin-top: -1rem;
-    }
-}
+
+/* ------------ Breadcrumbs ------------ */
 .breadcrumb-nav-list {
     padding-left: 0;
     margin-bottom: 0.75rem;
@@ -532,9 +478,6 @@ main .anchor-heading svg, main .anchor-heading span {
 }
 
 
-main summary {
-    cursor: pointer;
-}
 
 
 
@@ -596,6 +539,38 @@ h6 {
     font-weight: 500;
 }
 
+/*p in hgroup after h1: treat as subtitle*/
+hgroup p {
+    text-align: center;
+    margin-top: 0 !important;
+    font-size: 20px !important;
+    font-weight: bold;
+}
+
+main .anchor-heading {
+    position: absolute;
+    right: -0.5rem;
+    width: 1.5rem;
+    padding-right: 0.25rem;
+    padding-left: 0.25rem;
+    overflow: visible;
+    font-size: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+}
+@media (min-width: 50rem) {
+    main .anchor-heading {
+        right: auto;
+        left: -1.5rem;
+    }
+}
+main .anchor-heading svg, main .anchor-heading span {
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+    color: var(--accentcolor);;
+    visibility: hidden;
+}
 main .anchor-heading:hover svg, main .anchor-heading:hover span,
 anchor-heading:focus svg, anchor-heading:focus span,
 main h1:hover > .anchor-heading span,
@@ -607,13 +582,6 @@ main h6:hover > .anchor-heading span {
     visibility: visible;
 }
 
-/*p in hgroup after h1: treat as subtitle*/
-hgroup p {
-    text-align: center;
-    margin-top: 0 !important;
-    font-size: 20px !important;
-    font-weight: bold;
- }
 
 
 
@@ -1048,7 +1016,7 @@ hgroup p {
 
 
 
-/* ------------ Navigation Sidebar ------------ */
+/* ------------ Navigation Menu ------------ */
 /*Mobile and desktop font sizes*/
 .site-nav {font-size: 16px !important;}
 @media (min-width: 50rem) {.site-nav {font-size: 14px !important;}}
@@ -1367,6 +1335,9 @@ tfoot {
 
 
 /*Details and Summary*/
+main summary {
+    cursor: pointer;
+}
 main details {
     border: 1px solid var(--bordercolor); 
     border-radius: 8px;
