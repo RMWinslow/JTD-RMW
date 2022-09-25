@@ -60,6 +60,9 @@
     <meta name="description" content="{{ page.description }}">
     <meta property="og:description" content="{{ page.description }}" />
 {% endif %}
+
+<link rel="canonical" href="{{site.url}}{{page.url}}" />
+<meta property="og:url" content="{{site.url}}{{page.url}}" />
 <!-- End SEO tag -->
 
 {% include head_custom.html %}
