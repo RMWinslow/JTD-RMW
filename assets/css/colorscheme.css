@@ -12,12 +12,12 @@
 
 @media (prefers-color-scheme: dark) {
     :root {
-        --basecolor: #000000;
-        --boxcolor: #222222;
-        --feedbackcolor: #e7dfc5;
-        --accentcolor: #7a0019;
+        --basecolor: #000;
+        --boxcolor: #222;
+        --feedbackcolor: #411;
+        --accentcolor: #f99;
         --bordercolor: #93a1a1;
-        --textcolor: #eedddd;
-        --titlecolor: #ffffff;
+        --textcolor: #fee;
+        --titlecolor: #fff;
     }
 }
