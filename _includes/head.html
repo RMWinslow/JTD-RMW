@@ -46,25 +46,7 @@
 {% endif %}
 <script type="text/javascript" src="{{ '/assets/js/just-the-docs.js' | relative_url }}"></script>
 
-<!-- Begin SEO tag -->
-<meta property="og:locale" content="en_US" />
-<meta property="og:site_name" content="{{ site.title }}" />
-<meta property="og:type" content="website" />
-  
-<meta property="og:title" content="{{ page.title }} - {{ site.title }}" />
-{% if page.imagepreview %}
-    <meta property="og:image" content="{{ page.imagepreview }}">
-{% endif %}
-<meta property="author" content="{{ site.author }}" />
 
-{% if page.description %}
-    <meta name="description" content="{{ page.description }}">
-    <meta property="og:description" content="{{ page.description }}" />
-{% endif %}
-
-<link rel="canonical" href="{{site.url}}{{page.url}}" />
-<meta property="og:url" content="{{site.url}}{{page.url}}" />
-<!-- End SEO tag -->
-
+{% include head_seo.html %}
 {% include head_custom.html %}
 </head>
