@@ -194,7 +194,7 @@ hr {
     }
 }
 @media (min-width: 50rem) {
-    .main {
+    main {
         max-width: 800px;
     }
 }
