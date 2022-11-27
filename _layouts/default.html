@@ -127,9 +127,11 @@ layout: table_wrappers
           <ul>
             {%- assign children_list = pages_list | where: "parent", page.title -%}
             {% for child in children_list %}
+            {%- if child.nav_exclude != true -%}
               <li>
                 <a href="{{ child.url | absolute_url }}">{{ child.title }}</a>{% if child.summary %} - {{ child.summary }}{% endif %}
               </li>
+            {% endif %}
             {% endfor %}
           </ul>
         {% endif %}
