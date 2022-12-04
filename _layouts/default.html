@@ -130,6 +130,12 @@ layout: table_wrappers
             {%- if child.nav_exclude != true -%}
               <li>
                 <b><a href="{{ child.url | absolute_url }}">{{ child.title }}</a></b>
+                  {% if page.date %}
+                  Posted: {{page.date | date_to_string: "ordinal", "US" }}
+                  {% endif %}
+                  {% if page.last_modified_date %}
+                  - Modified: {{page.last_modified_date | date_to_string: "ordinal", "US" }}
+                  {% endif %}
                 {% if child.subtitle %}<br>{{ child.subtitle }}{% endif %}
                 {% if child.description %}<br>{{ child.description }}{% endif %}
               </li>
