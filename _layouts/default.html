@@ -124,17 +124,18 @@ layout: table_wrappers
         {% if page.has_children == true and page.has_toc != false %}
           <hr>
           <h2 class="text-delta">Pages in this group</h2>
-          <dl>
+          <ul>
             {%- assign children_list = pages_list | where: "parent", page.title -%}
             {% for child in children_list %}
             {%- if child.nav_exclude != true -%}
-              <dt><a href="{{ child.url | absolute_url }}">{{ child.title }}</a>{% if child.subtitle %} - {{ child.subtitle }}{% endif %}</dt>
-              <dd>
-                {% if child.description %}{{ child.description }}{% endif %}
-              </dd>
+              <li>
+                <b><a href="{{ child.url | absolute_url }}">{{ child.title }}</a></b>
+                {% if child.subtitle %}<br>{{ child.subtitle }}{% endif %}
+                {% if child.description %}<br>{{ child.description }}{% endif %}
+              </li>
             {% endif %}
             {% endfor %}
-          </dl>
+          </ul>
         {% endif %}
 
         {% capture footer_custom %}
