@@ -20,3 +20,12 @@ layout: post
 
 toc: true
 : My addition which adds a collapsible table of contents to the page, using [jekyll-toc](https://github.com/toshimaru/jekyll-toc). Only works with `layout: post`.
+
+description
+: Adds a manual description to SEO headers and some of my navigation menus.
+
+nav_exclude
+: renders the page but hides it from the sidebar and parent TOCs
+
+search_exclude
+: makes the page invisible to the search widget
