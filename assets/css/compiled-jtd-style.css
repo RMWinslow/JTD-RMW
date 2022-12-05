@@ -1005,20 +1005,16 @@ main h6:hover > .anchor-heading span {
 .site-nav summary {
     padding: 0.5em;
     line-height: 1;
-    display: flex;
-    justify-content: space-between;
+    transform: scaleX(-1);
 }
 .site-nav summary > .nav-list-link {
     padding: 0.5em;
     margin: -0.5em;
-    width: calc(100% - 1rem);
+    width: calc(100% - 2rem);
     background-color: var(--boxcolor);
-}
-.site-nav summary::after {
-    content: 'く';
-}
-.site-nav details[open] > summary:after {
-    content: " ▼";
+    position: absolute;
+    right: 0.5em;
+    transform: scaleX(-1);
 }
 
 .nav-list {
@@ -1054,6 +1050,10 @@ main h6:hover > .anchor-heading span {
 .nav-list-item .nav-list .nav-list-link {
     color: var(--textcolor);
 }
+
+
+
+
 
 
 
