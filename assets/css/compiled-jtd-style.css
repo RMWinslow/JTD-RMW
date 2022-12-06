@@ -1014,7 +1014,7 @@ main h6:hover > .anchor-heading span {
     background-color: var(--boxcolor);
     position: absolute;
     right: 0.5em;
-    transform: scaleX(-1);
+    transform: scaleX(-1); /*Double flip puts marker on RHS*/
 }
 
 .nav-list {
@@ -1037,7 +1037,9 @@ main h6:hover > .anchor-heading span {
     font-weight: 600;
     text-decoration: none;
 }
-.site-nav summary:hover, .site-nav summary.active,
+.site-nav summary:hover, .site-nav summary.active {
+    background-color: var(--feedbackcolor);
+}
 .nav-list .nav-list-item .nav-list-link:hover,
 .nav-list .nav-list-item .nav-list-link.active {
     background-image: linear-gradient(-90deg, var(--feedbackcolor) 0%, var(--feedbackcolor) 70%, #0000 100%);
@@ -1050,8 +1052,6 @@ main h6:hover > .anchor-heading span {
 .nav-list-item .nav-list .nav-list-link {
     color: var(--textcolor);
 }
-
-
 
 
 
