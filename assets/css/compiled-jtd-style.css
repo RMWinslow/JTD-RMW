@@ -201,7 +201,7 @@ hr {
 .main-content-wrap {
     padding: 1rem;
     padding-bottom: 5rem;
-    overflow-x: scroll;
+    overflow-x: auto;
 }
 @media (min-width: 50rem) {
     .main-content-wrap {
