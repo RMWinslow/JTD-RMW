@@ -136,7 +136,7 @@ div, hr, form, fieldset, noscript .table-wrapper {
     margin-top: 0;
 }
 p {
-    margin-top: 1em;
+    margin-top: 0em;
     margin-bottom: 1em;
 }
 a {
@@ -509,6 +509,9 @@ main h1, main h2, main h3, main h4, main h5, main h6 {
     margin-top: 1.5em;
     margin-bottom: 0.25em;
 }
+main h1 + h2, main h2 + h3, main h3 + h4, main h4 + h5, main h5 + h6 {
+    margin-top: 0em;
+}
 main h1:first-of-type {
     margin-top: 0.5em;
 }
@@ -581,9 +584,6 @@ main h5:hover > .anchor-heading span,
 main h6:hover > .anchor-heading span {
     visibility: visible;
 }
-
-
-
 
 
 
@@ -1250,13 +1250,13 @@ tfoot {
         page-break-after: always;
         margin: 0; height: 0; padding: 0;
     }
+    .pagebreak + * {
+        margin-top: 0;
+    }
     tr {
         padding: 0.1rem 0.4rem;
     }
 }
-
-
-
 
 
 
