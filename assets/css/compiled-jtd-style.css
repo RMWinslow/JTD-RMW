@@ -1362,11 +1362,12 @@ aside {
         /*In a wide window, this shoves the aside out into the margins. In a narrow window, it makes the aside cling to the right side of the screen.*/
         margin: 0rem   max(-22rem, -1 * (100vw - (100% + 2.5rem)))    0     0rem;
         width: min(20rem, 100vw - 100% - 2.5rem);
+        margin-top: -6rem;
     }
 }
 @media (min-width: 80rem) {
     aside, .aside-like {
-        margin: 0rem   max(-22rem, -1 * (100vw - (100% + 18rem)))    0     0rem;
+        margin-right: max(-22rem, -1 * (100vw - (100% + 18rem)));
         width: min(20rem, 100vw - 100% - 18rem);
     }
 }
