@@ -1355,20 +1355,20 @@ aside {
     border-right: 3px solid var(--bordercolor); 
 }
 /*I had to make things even hackier to work around the details of JTD css*/
-@media (min-width: 63rem) {
+@media (min-width: 64rem) {
     aside, .aside-like {
         float: right;
         clear: right;
         /*In a wide window, this shoves the aside out into the margins. In a narrow window, it makes the aside cling to the right side of the screen.*/
         margin: 0rem   max(-22rem, -1 * (100vw - (100% + 2.5rem)))    0     0rem;
-        width: min(20rem, 100vw - 100% - 2.5rem);
+        width: min(20rem, 100vw - 100% - 3rem);
         margin-top: -6rem;
     }
 }
 @media (min-width: 80rem) {
     aside, .aside-like {
         margin-right: max(-22rem, -1 * (100vw - (100% + 18rem)));
-        width: min(20rem, 100vw - 100% - 18rem);
+        width: min(20rem, 100vw - 100% - 19rem);
     }
 }
 
