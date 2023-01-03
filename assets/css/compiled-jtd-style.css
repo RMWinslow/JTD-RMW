@@ -1363,6 +1363,7 @@ aside {
         margin: 0rem   max(-22rem, -1 * (100vw - (100% + 2.5rem)))    0     0rem;
         width: min(20rem, 100vw - 100% - 3rem);
         margin-top: -6rem;
+        margin-bottom: 6rem;
     }
 }
 @media (min-width: 80rem) {
