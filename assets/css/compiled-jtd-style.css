@@ -1386,6 +1386,7 @@ aside {
 /*Smaller footnotes*/
 .footnotes {
     font-size: small;
+    border-top: 1px solid var(--bordercolor);
 }
 
 
