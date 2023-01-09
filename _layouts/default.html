@@ -130,7 +130,7 @@ layout: table_wrappers
             {%- if child.nav_exclude != true -%}
               <li>
                 <b><a href="{{ child.url | absolute_url }}">{{ child.title }}</a></b>
-                  <small><i>{% if page.date %}
+                  <small style="display: inline-block;"><i>{% if page.date %}
                   Posted: {{page.date | date_to_string: "ordinal", "US" }}
                   {% endif %}
                   {% if page.last_modified_date %}
