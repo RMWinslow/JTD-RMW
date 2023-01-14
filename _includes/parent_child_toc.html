@@ -1,22 +1,21 @@
-{% if page.has_children == true and page.has_toc != false %}
-  <hr>
-  <h2 class="text-delta">Pages in this group</h2>
-  <ul>
-    {%- assign children_list = pages_list | where: "parent", page.title -%}
-    {% for child in children_list %}
-    {%- if child.nav_exclude != true -%}
-      <li>
-        <b><a href="{{ child.url | absolute_url }}">{{ child.title }}</a></b>
-          <small style="display: inline-block;"><i>{% if child.date %}
-          Posted: {{child.date | date_to_string: "ordinal", "US" }}
-          {% endif %}
-          {% if child.last_modified_date %}
-          - Modified: {{child.last_modified_date | date_to_string: "ordinal", "US" }}
-          {% endif %}</small></i>
-        {% if child.subtitle %}<br>{{ child.subtitle }}{% endif %}
-        {% if child.description %}<br>{{ child.description }}{% endif %}
-      </li>
-    {% endif %}
-    {% endfor %}
-  </ul>
-{% endif %}
+
+<hr>
+<h2 class="text-delta">Pages in this group</h2>
+<ul>
+  {%- assign children_list = pages_list | where: "parent", page.title -%}
+  {% for child in children_list %}
+  {%- if child.nav_exclude != true -%}
+    <li>
+      <b><a href="{{ child.url | absolute_url }}">{{ child.title }}</a></b>
+        <small style="display: inline-block;"><i>{% if child.date %}
+        Posted: {{child.date | date_to_string: "ordinal", "US" }}
+        {% endif %}
+        {% if child.last_modified_date %}
+        - Modified: {{child.last_modified_date | date_to_string: "ordinal", "US" }}
+        {% endif %}</small></i>
+      {% if child.subtitle %}<br>{{ child.subtitle }}{% endif %}
+      {% if child.description %}<br>{{ child.description }}{% endif %}
+    </li>
+  {% endif %}
+  {% endfor %}
+</ul>
