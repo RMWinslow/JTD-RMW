@@ -516,7 +516,6 @@ main h1 + p, main h2 + p, main h3 + p, main h4 + p, main h5 + p, main h6 + p  {
 }
 main h1:first-of-type {
     margin-top: 0.5em;
-    margin-bottom: 0;
 }
 h1 {
     font-size: 225% !important;
@@ -548,7 +547,7 @@ h6 {
 /*p in hgroup after h1: treat as subtitle*/
 hgroup p {
     text-align: center;
-    margin-top: 0 !important;
+    margin-top: -0.5rem !important;
     font-size: 20px !important;
     font-weight: bold;
     line-height: 1;
@@ -588,6 +587,7 @@ main h5:hover > .anchor-heading span,
 main h6:hover > .anchor-heading span {
     visibility: visible;
 }
+
 
 
 
