@@ -1016,6 +1016,8 @@ main h6:hover > .anchor-heading span {
     right: 0.5em;
     transform: scaleX(-1); /*Double flip puts marker on RHS*/
 }
+/*Give the marker a bit less space on desktop mode.*/
+@media (min-width: 80rem) {.site-nav summary > .nav-list-link {width: calc(100% - 1.25rem);}}
 
 .nav-list {
     padding: 0 0 0 1em;
