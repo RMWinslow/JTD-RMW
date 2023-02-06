@@ -29,3 +29,8 @@ nav_exclude
 
 search_exclude
 : makes the page invisible to the search widget
+
+table_wrappers: to toggle two alternate ways of wrapping the tables.
+- `table_wrappers: false` disables the table wrappers entirely. Bare tables.
+- `table_wrappers: wide` makes the table wrapper span the entire width of the page, and doesn't widen the tables inside. May play oddly with asides.
+- Otherwise, the tablewrappers work as default in JTD.
