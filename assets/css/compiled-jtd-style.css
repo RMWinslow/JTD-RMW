@@ -1399,8 +1399,9 @@ margin-right: min(-1rem, -1 * (100vw - (100% + 20rem)) );
 /*tweaks to make katex play more nicely*/
 .katex-display {
     overflow-x: auto;
-    margin: 0rem -1rem !important;
+    margin: 0rem 0rem !important;
     padding: 0.5rem;
+    max-width: 800px;
 }
 
 
