@@ -4,6 +4,10 @@ layout: vendor/compress
 
 {% if page.table_wrappers == false %}
 {{ content }}
+{% elsif page.table_wrappers == "wide" %}
+{% assign content_ = content | replace: '<table', '<div class="table-wrapper-wide"><table' %}
+{% assign content_ = content_ | replace: '</table>', '</table></div>' %}
+{{ content_ }}
 {% else %}
 {% assign content_ = content | replace: '<table', '<div class="table-wrapper"><table' %}
 {% assign content_ = content_ | replace: '</table>', '</table></div>' %}
