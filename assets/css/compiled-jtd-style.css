@@ -1118,14 +1118,34 @@ main h6:hover > .anchor-heading span {
         margin-left: -1rem;
         padding: 1rem;
     }
+    .table-wrapper-wide {
+        display: block;
+        width: calc(100vw - 2rem);
+        margin-bottom: 1.5rem;
+        overflow-x: auto;
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.12), 0 3px 10px rgba(0, 0, 0, 0.08);
+        margin-right: 0rem;
+        margin-left: -2rem;
+        padding: 1rem;
+        padding-left: 2rem;
+    }
+    @media (min-width: 80rem) {
+        .table-wrapper-wide {
+            width: calc(100vw - 248px - 2rem);
+        }
+    }
+}
+
+
+.table-wrapper table {
+    width: 100%;
+    max-width: 100%;
 }
 
 table {
     border-collapse: collapse;
     border-spacing: 0;
     margin: 0;
-    width: 100%;
-    max-width: 100%;
 }
 th,
 td {
@@ -1137,26 +1157,6 @@ thead,
 tfoot {
     background: var(--boxcolor);
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
