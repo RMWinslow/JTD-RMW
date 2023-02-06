@@ -194,7 +194,7 @@ hr {
     }
 }
 @media (min-width: 50rem) {
-    main {
+    main > *:not(.table-wrapper-wide):not(.full-width) {
         max-width: 800px;
     }
 }
@@ -1120,18 +1120,18 @@ main h6:hover > .anchor-heading span {
     }
     .table-wrapper-wide {
         display: block;
-        width: calc(100vw - 1rem);
+        width: calc(100% + 2rem);
         margin-bottom: 1.5rem;
         overflow-x: auto;
         box-shadow: 0 1px 2px rgba(0, 0, 0, 0.12), 0 3px 10px rgba(0, 0, 0, 0.08);
         margin-right: 0rem;
-        margin-left: -2rem;
-        padding: 1rem;
-        padding-left: 2rem;
+        margin-left: -1rem;
+        padding: 1rem 2rem;
     }
-    @media (min-width: 80rem) {
+    @media (min-width: 50rem) {
         .table-wrapper-wide {
-            width: calc(100vw - 248px - 1rem);
+            width: calc(100% + 4rem);
+            margin-left: -2rem;
         }
     }
 }
