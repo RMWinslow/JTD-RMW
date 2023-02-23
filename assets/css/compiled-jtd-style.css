@@ -1428,6 +1428,7 @@ figcaption {
 /*Highlighting and borders on hilighted code blocks*/
 main div.highlighter-rouge {
     border: 1px solid var(--bordercolor);
+    overflow-x: auto;
 }
 main .highlighter-rouge {
     background-color: var(--boxcolor);
