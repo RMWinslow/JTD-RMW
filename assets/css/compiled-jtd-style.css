@@ -411,12 +411,6 @@ main ol {
 main li .highlight {
     margin-top: 0.25rem;
 }
-main .highlighter-rouge {
-    border: 1px solid var(--bordercolor);
-}
-main .highlighter-rouge div.highlight {
-    padding: 0.75rem;
-}
 main .task-list {
     padding-left: 0;
 }
@@ -445,6 +439,12 @@ main dd {
     margin-bottom: 0.5rem;
     font-size: 90%;
 }
+
+
+
+
+
+
 
 
 /* ------------ Breadcrumbs ------------ */
@@ -1422,3 +1422,34 @@ figcaption {
         display: none;
     }
 }
+
+
+
+/*Highlighting and borders on hilighted code blocks*/
+main div.highlighter-rouge {
+    border: 1px solid var(--bordercolor);
+}
+main .highlighter-rouge {
+    background-color: var(--boxcolor);
+}
+main .highlighter-rouge div.highlight {
+    padding: 0.75rem;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
