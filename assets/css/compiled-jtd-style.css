@@ -344,7 +344,7 @@ body {
 main {
     line-height: 1.45;
 }
-main ol, main ul, main dl, main pre, main address, main blockquote, main .table-wrapper, main .table-wrapper-wide {
+main ol, main ul, main dl, main>pre, main address, main blockquote, main .table-wrapper, main .table-wrapper-wide {
     margin-top: 0.5em;
 }
 main a {
