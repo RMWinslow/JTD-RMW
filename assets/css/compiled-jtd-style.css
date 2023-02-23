@@ -1425,7 +1425,7 @@ figcaption {
 
 
 
-/*Highlighting and borders on hilighted code blocks*/
+/*Highlighting and borders on highlighted code blocks*/
 main div.highlighter-rouge {
     border: 1px solid var(--bordercolor);
     overflow-x: auto;
@@ -1437,7 +1437,10 @@ main .highlighter-rouge div.highlight {
     padding: 0.75rem;
 }
 
-
+/*Border color on fieldset*/
+main fieldset { 
+    border: 1px solid var(--bordercolor);
+}
 
 
 
