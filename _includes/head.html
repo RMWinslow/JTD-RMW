@@ -25,7 +25,7 @@
 
 
 <!-- Math Rendering. In the _config.yml, I have the default set to katex. Use `math: none` to disable math rendering in a page or subsite.-->
-{% assign math = page.math | default: layout.math | default: site.math %}
+{% assign math = page.math | default: layout.math | default: site.math | "katex" %}
 {% case math %}
   {% when "katex" %}
     {% include katex.html %}

@@ -107,5 +107,4 @@ kramdown:
     block:
       line_numbers: false
 
-math: katex
 
