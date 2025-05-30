@@ -8,12 +8,14 @@ layout: default
     {% if page.subtitle %}<p>{{page.subtitle}}</p>{% endif %}
   </hgroup>
 {% endif %}
-{% if page.date or page.last_modified_date or page.author %}
+{% if page.date or page.last_modified_date or page.author or page.modified %}
   <div class="date-header">
     {% if page.date %}
     Posted: {{page.date | date_to_string: "ordinal", "US" }}
     {% endif %}
     {% if page.last_modified_date %}
+    - Modified: {{page.last_modified_date | date_to_string: "ordinal", "US" }}
+    {% if page.modified %}
     - Modified: {{page.last_modified_date | date_to_string: "ordinal", "US" }}
     {% endif %}
     {% if page.author %}

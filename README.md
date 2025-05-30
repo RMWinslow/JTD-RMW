@@ -12,8 +12,9 @@ parent: Title of Parent
 has_toc: false
 : Parent pages usually list their children after the main content. This disables that automatically generated list of children.
 
-date and last_modified_date
+date and last_modified_date or modified
 : Self explanatory. Use YYYY-MM-DD format.
+: `last_modified_date` is the JTD default name. I added a check for `modified` in the post layout as well since I keep forgetting the full parameter name.
 
 layout: post
 : Use the layout with my additions, namely: ToC, subtitle, date in header.
