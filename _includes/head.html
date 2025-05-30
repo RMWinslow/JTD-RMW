@@ -25,7 +25,7 @@
 
 
 <!-- Math Rendering. Unlike default JTD, I have default set to "katex" Use `math: none` to disable math rendering in a page or subsite.-->
-{% assign math = page.math | default: layout.math | default: site.math | default = "katex" %}
+{% assign math = page.math | default: layout.math | default: site.math | default: "katex" %}
 {% case math %}
   {% when "katex" %}
     {% include katex.html %}
