@@ -15,6 +15,7 @@ layout: default
     {% endif %}
     {% if page.last_modified_date %}
     - Modified: {{page.last_modified_date | date_to_string: "ordinal", "US" }}
+    {% endif %}
     {% if page.modified %}
     - Modified: {{page.last_modified_date | date_to_string: "ordinal", "US" }}
     {% endif %}
