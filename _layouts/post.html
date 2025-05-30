@@ -13,11 +13,9 @@ layout: default
     {% if page.date %}
     Posted: {{page.date | date_to_string: "ordinal", "US" }}
     {% endif %}
-    {% if page.last_modified_date %}
-    - Modified: {{page.last_modified_date | date_to_string: "ordinal", "US" }}
-    {% endif %}
-    {% if page.modified %}
-    - Modified: {{page.last_modified_date | date_to_string: "ordinal", "US" }}
+    {% assign modified = page.last_modified_date | default: page.modified %}
+    {% if modified %}
+    - Modified: {{modified | date_to_string: "ordinal", "US" }}
     {% endif %}
     {% if page.author %}
     by {{page.author}}
