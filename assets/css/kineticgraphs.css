@@ -4,6 +4,11 @@ https://github.com/cmakler/kgjs
 The css for katex must be loaded as well.
 */
 
+
+.kg-container:fullscreen {
+    background-color: white;
+}
+
 div.kg-container {
 
     /* ::-webkit-scrollbar {
@@ -82,10 +87,6 @@ div.kg-container {
 
     table.gameMatrix tr td.strategy {
         font-weight: bolder;
-    }
-
-    .kg-container:fullscreen {
-        background-color: white;
     }
 
     .spacer {
