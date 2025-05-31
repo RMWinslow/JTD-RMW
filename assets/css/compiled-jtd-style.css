@@ -1436,6 +1436,17 @@ main fieldset {
 
 
 
+/*prevent duplicate text in katex, even without loading full katex css*/
+/*it looks like this is the only bit of kgjs css absolutely vital for my graphs to function.*/
+.katex .katex-mathml {
+    position: absolute;
+    clip: rect(1px, 1px, 1px, 1px);
+    padding: 0;
+    border: 0;
+    height: 1px;
+    width: 1px;
+    overflow: hidden;
+}
 
 
 
