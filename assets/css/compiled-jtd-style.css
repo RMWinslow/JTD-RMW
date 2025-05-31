@@ -1438,7 +1438,7 @@ main fieldset {
 
 /*prevent duplicate text in katex, even without loading full katex css*/
 /*it looks like this is the only bit of kgjs css absolutely vital for my graphs to function.*/
-.katex .katex-mathml {
+/* .katex .katex-mathml {
     position: absolute;
     clip: rect(1px, 1px, 1px, 1px);
     padding: 0;
@@ -1446,7 +1446,8 @@ main fieldset {
     height: 1px;
     width: 1px;
     overflow: hidden;
-}
+} */
+/*TODO: This isn't actually enough to make the kineticgraphs function properly. I'll need to come back another time and pick through the katex css to find the vital core.*/
 
 
 
