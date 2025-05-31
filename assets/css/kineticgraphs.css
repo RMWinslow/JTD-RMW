@@ -1,0 +1,128 @@
+/*
+Styling to make kineticgraphs work properly
+https://github.com/cmakler/kgjs
+The css for katex must be loaded as well.
+*/
+
+div.kg-container {
+
+    /* ::-webkit-scrollbar {
+        width: 0px;
+        background: transparent;
+    } */
+
+    text {
+        cursor: default;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+    }
+
+    text::selection {
+        background: none;
+    }
+
+    text {
+        font-size: 10px;
+    }
+
+    input {
+        font-family: KaTeX_Main;
+    }
+
+    .katex {
+        font-size: 1em;
+    }
+
+    .tick text {
+        fill: gray;
+    }
+
+    .tick line {
+        stroke: gray;
+    }
+
+    .tick {
+        font-size: 5pt;
+        color: red;
+    }
+
+    table.gameMatrix {
+    border-collapse: collapse;
+        width: 100%;
+    }
+
+    table.gameMatrix tr td {
+    border: 2px solid #999;
+    padding: 1rem;
+    text-align: center;
+    font-size: 14pt;
+    }
+
+    table.gameMatrix tr td.player1 {
+        color: #3182bd;
+    }
+
+    table.gameMatrix tr td.player2 {
+        color: #d62728;
+    }
+
+    table.gameMatrix tr td.empty {
+        border: 0;
+    }
+
+    table.gameMatrix tr td.player1.payoff {
+        border-right: 0;
+    }
+
+    table.gameMatrix tr td.player2.payoff {
+        border-left: 0;
+    }
+
+    table.gameMatrix tr td.strategy {
+        font-weight: bolder;
+    }
+
+    .kg-container:fullscreen {
+        background-color: white;
+    }
+
+    .spacer {
+        margin-top: 20px;
+    }
+
+    .slider-numberInput {
+        font-family: Katex_Main;
+        font-size: 14pt;
+        border: none;
+        background: none;
+        margin: 0px;
+        padding-top: 0px;
+        padding-bottom: 0px;
+    }
+
+    .slider-label {
+        font-family: Katex_Main;
+        font-size: 14pt;
+        border: none;
+        text-align: right;
+        margin: 0px;
+        padding: 0px;
+    }
+
+    .checkbox-label {
+        font-family: KaTeX_Main;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
