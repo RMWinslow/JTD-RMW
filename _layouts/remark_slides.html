@@ -5,8 +5,9 @@ This file:
 - renders markdown as a remark slidedeck
 - tweaks the styling a bit
 - adds slide classes "header" for compact bordered headers and "caption-slide" to make simple image/caption combos
-- Makes math rendering compatible with the remark markdown engine by replacing each _ with \_, and each \\ with \\\\\\\\ (because the escapes must be escaped too) 
+- Makes math rendering compatible with the remark markdown engine by replacing ~~each _ with \_, and~~ each \\ with \\\\\\\\ (because the escapes must be escaped too) 
   - NOTE: these replacements apply to the entire markdown source, not just equations. As such, filenames like food_bar.png will be broken.
+  - I've turned off the underscore replacement for now...
 
 Possible TODO: Migrate the css content into the css files. Potentially under a seperate css file just for remark slides?
 -->
@@ -117,7 +118,8 @@ Possible TODO: Migrate the css content into the css files. Potentially under a s
   </head>
   <body>
     <textarea id="source">
-{{page.content | replace: "_", "\_"  | replace: "\\", "\\\\\\\\" }}
+<!-- {{page.content | replace: "_", "\_"  | replace: "\\", "\\\\\\\\" }} -->
+{{page.content | replace: "\\", "\\\\\\\\" }}
     </textarea>
     <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
     <script>
