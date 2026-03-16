@@ -7,13 +7,14 @@
 {% if page.imagepreview %}
     <meta property="og:image" content="{{ page.imagepreview }}">
 {% endif %}
-<meta property="author" content="{{ site.author }}" />
+{% if site.author %}<meta property="author" content="{{ site.author }}" />{% endif %}
 
 {% if page.description %}
     <meta name="description" content="{{ page.description }}">
     <meta property="og:description" content="{{ page.description }}" />
 {% endif %}
 
-<link rel="canonical" href="{{site.url}}{{site.baseurl}}{{page.url}}" />
-<meta property="og:url" content="{{site.url}}{{site.baseurl}}{{page.url}}" />
+{% assign canonical_url = site.url | append: site.baseurl | append: page.url | replace: "http://", "https://" %}
+<link rel="canonical" href="{{ canonical_url }}" />
+<meta property="og:url" content="{{ canonical_url }}" />
 <!-- End SEO tag -->
