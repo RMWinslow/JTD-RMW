@@ -246,6 +246,64 @@ ytrss, scrapetest, webfonts, umn-git-thesis-demo, kgjs, emojitwo, twemoji-colr-t
 
 (Checked for both `_config.yml` and `_config.yaml` on both `main` and `master` branches. None found.)
 
+## Audit Ideas [claude's suggestions]
+
+These are potential audits that could be run across the theme and consuming sites to improve consistency, cleanliness, and maintainability.
+
+### Frontmatter hygiene (per-page, across all sites)
+
+- **Missing titles.** Pages without a `title` produce a broken `<title>` tag (` - Site Title`) and are invisible to navigation and search. Scan for any untitled pages that aren't intentionally using `layout: null`.
+- **Orphaned `parent` references.** Pages whose `parent` value doesn't match any existing page's `title` will silently fail to nest in the sidebar. This is easy to break when renaming a parent page.
+- **Phantom `has_children`.** Pages marked `has_children: true` that don't actually have any children referencing them (empty nav groups), or the reverse — pages that have children pointing at them but aren't marked `has_children: true` (children won't render as a collapsible group).
+- **`modified` vs `last_modified_date` usage.** Pages using the `modified` shorthand won't get the footer timestamp. Scan for pages using `modified` and flag them, since `last_modified_date` is the more complete option.
+- **Stale dates.** Pages whose `last_modified_date` is older than their most recent git commit — the date may have been forgotten after an edit.
+- **Missing `description`.** Pages that are likely to be shared (top-level, high-traffic) but have no `description` for social previews and SEO.
+- **Unnecessary math loading.** Pages that don't contain any math notation but still load KaTeX (the default). Adding `math: none` to pages or sections that don't need it could reduce page weight, especially on sites like `games` where math is probably never used.
+- **Double KaTeX conflict.** Some pages load interactive graphs via a third-party library (kgjs) that bundles its own KaTeX. When the theme also loads KaTeX, the page stutters and locks up because two instances of KaTeX are fighting over the same DOM. This needs to be fixed — likely by setting `math: none` on those pages, or by making the theme's KaTeX loading smarter about detecting an existing instance.
+
+### Navigation structure
+
+- **Depth consistency.** Check whether any site uses more than three levels of nesting, and whether the breadcrumb limitation (only two levels) causes confusion for deeply nested pages.
+- **Single-child parents.** Parent pages with only one child — the grouping may not be adding value and could be flattened.
+- **Nav ordering gaps.** Pages using `nav_order` with large gaps or inconsistent numbering that makes future insertions awkward.
+
+### Cross-site consistency
+
+- **Plugin standardization.** The sites use different plugin sets (some have `jekyll-sitemap`, some don't; some have `jekyll-redirect-from`, some don't). Consider whether all sites should have a standard plugin baseline.
+- **`page_excerpts: true`** is set on some sites but the theme never reads it. Either remove it everywhere or add support for it in the theme.
+- **`webfontdirectory`** is set on `posts` and `games` but not on `bib`, `circe`, or `RMWinslow.github.io`. If some pages on those sites reference web fonts, they may be loading from the wrong path.
+- **`gh_edit_link: false`** is set inconsistently — present on most sites but missing from `bib`. Harmless in practice (the footer guards against incomplete config) but inconsistent.
+- **`last_edit_timestamp: true`** is only set on `posts`. The other sites don't show "Page last modified" in the footer even when pages have `last_modified_date` set.
+
+### Link and content integrity
+
+- **Internal broken links.** Links between pages within a site that point to pages that have been moved, renamed, or deleted.
+- **External link rot.** Links to external resources that have gone stale (404s, domain changes). Particularly relevant for `bib` which is full of paper references.
+- **Missing or broken images.** Image references that don't resolve, especially in older posts.
+- **Redirect chains.** Sites using `jekyll-redirect-from` may have accumulated stale redirects that could be cleaned up.
+
+### Theme-level cleanup
+
+- **Remove or repurpose `nav.html`.** It's unused — `default.html` uses `nav_details.html`. Either delete it or document it as an alternative that consuming sites can swap in.
+- **Consolidate identical layouts.** `page.html`, `home.html`, and `about.html` are byte-for-byte identical. Consider whether they should all just be symlinks or whether the semantic distinction is worth maintaining.
+- **Sync KaTeX versions.** `katex.html` uses v0.16.22 but `remark_slides.html` has v0.16.7 hardcoded inline.
+- **Update MathJax.** `mathjax.html` loads a beta (v4.0.0-beta.4). MathJax 4 has since had stable releases.
+- **Extend `modified` fallback to the footer.** The `post` layout handles `modified` as an alias for `last_modified_date`, but the footer in `default.html` doesn't. A one-line Liquid `assign` would fix this.
+- **Guard the `<title>` tag.** Add a conditional so pages without a `title` get just the site title instead of ` - Site Title`.
+- **Clean up `_config.yml` defaults.** The theme's own config still has the original JTD author's URLs, GA tracking ID, and footer content. These are overridden by consuming sites but are misleading if someone builds the theme repo directly for testing.
+
+### Accessibility
+
+- **Color contrast.** The `colorscheme.css` dark mode uses `--textcolor: #fee` on `--basecolor: #000` — likely fine, but the light mode's `--textcolor: #55525B` on `--basecolor: #fdf6e3` should be verified against WCAG AA standards.
+- **Alt text in templates.** The SVG icons in `default.html` have `<title>` elements (good), but any images injected via the logo or content should be checked.
+- **Keyboard navigation.** The `<details>`-based nav in `nav_details.html` should be keyboard-accessible by default, but worth verifying with a screen reader.
+
+### Performance
+
+- **KaTeX on every page.** The default math engine is KaTeX, which loads ~300KB of CSS + JS. On sites where most pages don't use math, a site-level `math: none` default with per-page opt-in (`math: katex`) would be lighter.
+- **Search index size.** On large sites like `posts`, the Lunr search index (`search-data.json`) can get very large. Pages that don't need to be searchable could use `search_exclude: true` to trim it.
+- **Unused CSS.** `extrabits.css` is loaded but empty. `kineticgraphs.css` is loaded on every site but only relevant to sites using kgjs. Consider making these opt-in via config rather than always-on.
+
 ## Notes and Preferences
 
 - Track all project context, session history, and preferences here in CLAUDE.md rather than in hidden memory files. This file should be the single source of truth for cross-session continuity.
