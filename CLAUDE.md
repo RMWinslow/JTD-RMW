@@ -176,6 +176,7 @@ These are the `_config.yml` settings that JTD-RMW's templates read. Consuming si
 
 These are things noticed during the code review. Tagged to distinguish them from user-created TODOs.
 
+- **[claude's suggestion]** The original JTD Sass pipeline was manually removed, but some remnants survive: `_includes/css/just-the-docs.scss.liquid` (the SCSS entry point — references `_sass/` modules that no longer exist), `_includes/css/custom.scss.liquid` (the custom SCSS hook), and the `just-the-docs.gemspec` (still references `_sass` in its file glob on line 13). The `_sass/` directory itself is gone, so the pipeline would fail if triggered. The ~30 `!important` flags on `font-size` declarations throughout `compiled-jtd-style.css` are also vestigial — they were likely needed to win specificity battles against the SCSS output, but since the SCSS pipeline is dead, they serve no purpose and make it harder for consuming sites to override font sizes.
 - **[claude's suggestion]** `nav.html` is never included anywhere — `default.html` uses `nav_details.html` instead. The file could be removed, or kept as an alternate navigation style that consuming sites could swap in via an override.
 - **[claude's suggestion]** The `modified` alias only works in the `post` layout's date header. The footer timestamp in `default.html` (line 136) only checks `page.last_modified_date`, so a page using `modified:` alone will not show a "Page last modified" footer. Consider adding a fallback in the footer as well, or documenting this caveat prominently.
 - **[claude's suggestion]** The `remark_slides.html` layout loads KaTeX v0.16.7, while `katex.html` uses the newer v0.16.22. These should probably be kept in sync.
@@ -191,6 +192,7 @@ These are things noticed during the code review. Tagged to distinguish them from
 
 ## Theme TODOs
 
+- [ ] Remove the dead Sass pipeline remnants: `_includes/css/just-the-docs.scss.liquid`, `_includes/css/custom.scss.liquid`, and the `_sass` reference in `just-the-docs.gemspec` line 13. Then strip the vestigial `!important` flags from `font-size` declarations in `compiled-jtd-style.css` (~30 instances).
 - [ ] Examine whether the `width: 0px` scrollbar trick (commented out in `kineticgraphs.css:14-17`) is used anywhere in the consuming sites, and whether it should be removed or restored.
 - [ ] Index the differences between JTD-RMW and `just-the-docs-tweaked` to understand what would be involved in migrating the sites that still use the older fork (`3102old`, `tones`).
 - [ ] Deprecate and remove the `remark_slides` layout. The Remark.js slide engine required too many workarounds (backslash escaping, underscore conflicts with filenames, separate KaTeX version). The two pages that use it in `RMWinslow.github.io` (`3102/measurement-money-slides` and `slides/remark_formattest`) need to be either deleted or migrated to the standalone `slides` repo.
