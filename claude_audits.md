@@ -438,6 +438,246 @@ Full sitemaps of all five active JTD-RMW sites. Pages marked `[hidden]` have `na
 
 Most of these are older standalone HTML files that predate the Jekyll site structure. The `sakura.css` relative path issue affects ~15 files and could be fixed with a find-and-replace to use absolute paths from the site root.
 
+### Files not in the navigation trees (2026-03-16)
+
+Files (`.md` and `.html`) that exist in each repo but do not appear in the navigation hierarchy sitemaps above. Excludes `_`-prefixed directories (`_drafts/`, `_layouts/`, `_includes/`, etc.), config files, READMEs, and root index pages.
+
+**circe** — Clean. Every content file is in the navigation tree.
+
+**bib** — 1 orphan:
+
+| File | Title | Parent | Issue |
+|------|-------|--------|-------|
+| `zotero/lou2013accurate.md` | (no title) | `papers` (lowercase) | Case mismatch — should be `Papers`. Duplicate of `paper/lou2013accurate.md` which has the correct parent. |
+
+**games** — 8 files, all frontmatter-less HTML:
+
+| File | Notes |
+|------|-------|
+| `codenames/pinyinCodenames.html` | Pinyin codenames word generator |
+| `codenames/pinyinCodenames2.html` | Pinyin codenames word generator (v2) |
+| `ref/mycitycards.html` | My City card reference |
+| `rules/cardImages.html` | Card image display page |
+| `scythe/automountie.html` | Scythe automa tool |
+| `tools/mysterium.html` | Raw HTML companion to `tools/mysterium.md` (which is in the tree) |
+| `tools/randomWikipedia.html` | Raw HTML companion to `tools/randomwiki.md` (which is in the tree) |
+| `tools/randomWords.html` | Raw HTML companion to `tools/randomwords.md` (which is in the tree) |
+
+The last three are standalone HTML tools embedded/linked by their `.md` counterparts. The first five are independent standalone pages with no Jekyll chrome.
+
+**posts** — 35 files:
+
+*Data/source files with no frontmatter (30 files):*
+
+| File | Notes |
+|------|-------|
+| `nature/BIRDUPraw/Informedness_genus_markdownsource.md` | Raw markdown table for BIRDUP analysis |
+| `nature/BIRDUPraw/Informedness_species_markdownsource.md` | " |
+| `nature/BIRDUPraw/Markedness_genus_markdownsource.md` | " |
+| `nature/BIRDUPraw/Markedness_species_markdownsource.md` | " |
+| `nature/BIRDUPraw/WeightedInfoMark_genus_markdownsource.md` | " |
+| `nature/BIRDUPraw/WeightedInfoMark_species_markdownsource.md` | " |
+| `nature/BIRDUPraw/YulePhi_genus_markdownsource.md` | " |
+| `nature/BIRDUPraw/YulePhi_species_markdownsource.md` | " |
+| `nature/BIRDUPraw/agreement_genus_markdownsource.md` | " |
+| `nature/BIRDUPraw/agreement_species_markdownsource.md` | " |
+| `nature/BIRDUPraw/basicbirdup_genus_markdownsource.md` | " |
+| `nature/BIRDUPraw/basicbirdup_species_markdownsource.md` | " |
+| `nature/BIRDUPraw/birdupplusprevalence_genus_markdownsource.md` | " |
+| `nature/BIRDUPraw/birdupplusprevalence_species_markdownsource.md` | " |
+| `nature/BIRDUPraw/cohenkappa_genus_markdownsource.md` | " |
+| `nature/BIRDUPraw/cohenkappa_species_markdownsource.md` | " |
+| `nature/BIRDUPraw/fowlkesmallows_genus_markdownsource.md` | " |
+| `nature/BIRDUPraw/fowlkesmallows_species_markdownsource.md` | " |
+| `nature/BIRDUPraw/jaccard_genus_markdownsource.md` | " |
+| `nature/BIRDUPraw/jaccard_species_markdownsource.md` | " |
+| `nature/BIRDUPraw/normalizedTPR_genus_markdownsource.md` | " |
+| `nature/BIRDUPraw/normalizedTPR_species_markdownsource.md` | " |
+| `nature/BIRDUPraw/prevalance_genus_markdownsource.md` | " |
+| `nature/BIRDUPraw/prevalance_species_markdownsource.md` | " |
+| `media/alphabet_books/x words from wikipedia corpus - filtered by grok V2.md` | Word list data |
+| `media/alphabet_books/x words from wikipedia corpus - filtered.md` | Word list data |
+| `media/alphabet_books/x words from wikipedia corpus.md` | Word list data |
+| `nature/astrosymbols/dualscalesolarsystem_PeterGift_figues.md` | Notes/figures, no frontmatter |
+| `art/Lehrer/LICENSE.md` | License file for Lehrer content |
+| `maps/sisterstates/index.html` | Standalone HTML inside the Sister States page directory |
+
+*Draft/scratch files (3 files):*
+
+| File | Notes |
+|------|-------|
+| `econ/_texaslawsuit.md` | No frontmatter; underscore-prefixed filename (likely a draft) |
+| `language/_tengwartest.html` | No frontmatter; underscore-prefixed filename |
+| `art/colors/tabletest.html` | No frontmatter; test file |
+
+*Files with frontmatter but outside the tree (2 files):*
+
+| File | Title | Layout | Parent | Notes |
+|------|-------|--------|--------|-------|
+| `art/colors/colors.html` | (no title) | null | — | Embedded HTML artifact, probably for the Binomial Color Names page |
+| `nature/_everyanimal.md` | A List of Every Animal | post | Science and Nature | Underscore prefix may cause Jekyll to skip it, or it's a work in progress. Has no `nav_exclude` set. |
+
+**RMWinslow.github.io** — 110 files:
+
+*Files with frontmatter (6 — individual homework pages, all `nav_exclude: true`):*
+
+| File | Title | Layout |
+|------|-------|--------|
+| `330/hw/hw1.md` | Econ 330 HW1 | post |
+| `330/hw/hw2.md` | Econ 330 HW2 | post |
+| `330/hw/hw3.md` | Econ 330 HW3 | post |
+| `330/hw/hw4.md` | Econ 330 HW4 | post |
+| `330/hw/hw4/answers.md` | Econ 330 HW4 | post |
+| `330/hw/hw5.md` | Econ 330 HW5 | post |
+
+The nav tree has a single combined "Econ 330 HW1–HW5" entry. These individual pages are intentionally hidden.
+
+*Files without frontmatter (104 — all legacy pre-Jekyll HTML except 2 markdown files):*
+
+Legacy Highcharts graphs (`3102/highcharts/`, 9 files):
+
+| File |
+|------|
+| `3102/highcharts/data_CCPIU.html` |
+| `3102/highcharts/onePeriodBothAgents.html` |
+| `3102/highcharts/onePeriodConsumer.html` |
+| `3102/highcharts/onePeriodEquilibrium.html` |
+| `3102/highcharts/onePeriodProducer.html` |
+| `3102/highcharts/solowSteadyState.html` |
+| `3102/highcharts/twoPeriodEndowment.html` |
+| `3102/highcharts/twoPeriodEndowmentWithBorrowingLimits.html` |
+| `3102/highcharts/twoPeriodEndowmentWithDifferentRates.html` |
+
+Teaching interactives and notes (`econ/teaching/3102/`, 28 files):
+
+| File |
+|------|
+| `econ/teaching/3102/equilibrium/consumer.html` |
+| `econ/teaching/3102/equilibrium/consumerInteractive (2).html` |
+| `econ/teaching/3102/equilibrium/consumerInteractive.html` |
+| `econ/teaching/3102/equilibrium/equilibrium.html` |
+| `econ/teaching/3102/equilibrium/firm.html` |
+| `econ/teaching/3102/equilibrium/solving.html` |
+| `econ/teaching/3102/interactive/ConsumerAndProducerInteractive.html` |
+| `econ/teaching/3102/interactive/OnePeriodEquilibiriumInteractive.html` |
+| `econ/teaching/3102/interactive/consumerInteractive.html` |
+| `econ/teaching/3102/interactive/exampleInteractive.html` |
+| `econ/teaching/3102/interactive/interactivegraphs.html` |
+| `econ/teaching/3102/interactive/producerInteractive.html` |
+| `econ/teaching/3102/interactive/solowInteractive.html` |
+| `econ/teaching/3102/interactive/twoPeriodEndowment.html` |
+| `econ/teaching/3102/interactive/twoPeriodEndowmentWithBorrowingLimits.html` |
+| `econ/teaching/3102/interactive/twoPeriodEndowmentWithDifferentRates.html` |
+| `econ/teaching/3102/intertemporal/consumerProblemWithLabor.html` |
+| `econ/teaching/3102/intertemporal/creditFrictions.html` |
+| `econ/teaching/3102/intertemporal/firmProblem.html` |
+| `econ/teaching/3102/intertemporal/intertemporal/equilibirumDefinition.html` |
+| `econ/teaching/3102/intertemporal/intertemporal/shifterExamples.html` |
+| `econ/teaching/3102/intertemporal/intertemporalCE_Definiton.html` |
+| `econ/teaching/3102/intertemporal/shifterExamples.html` |
+| `econ/teaching/3102/intertemporal/twoPeriodEndowment (2).html` |
+| `econ/teaching/3102/intertemporal/twoPeriodEndowment.html` |
+| `econ/teaching/3102/test/CEInteractive.html` |
+| `econ/teaching/3102/test/consumerInteractive.html` |
+| `econ/teaching/3102/test/exampleInteractive.html` |
+| `econ/teaching/3102/test/producerInteractive.html` |
+
+Typesetting guides (6 files, duplicated in two locations):
+
+| File |
+|------|
+| `econ/teaching/3102/typesetting/latexMath.html` |
+| `econ/teaching/3102/typesetting/lyxTutorial.html` |
+| `econ/teaching/3102/typesetting/typesettingSoftware.html` |
+| `econ/teaching/typesetting/latexMath.html` |
+| `econ/teaching/typesetting/lyxTutorial.html` |
+| `econ/teaching/typesetting/typesettingSoftware.html` |
+
+Problem set data/graphs (6 files):
+
+| File |
+|------|
+| `econ/teaching/3102psets/HW1_dataGraphs.html` |
+| `econ/teaching/3102psets/HW2_dataGraphs.html` |
+| `econ/teaching/3102psets/HWBCycles_old/dataResultsFlippedPercentDiff.html` |
+| `econ/teaching/3102psets/HWBCycles_old/dataResultsOG.html` |
+| `econ/teaching/3102psets/HWBCycles_old/dataResultsOnlyImages.html` |
+| `econ/teaching/3102psets/HWBCycles_old/week9solutions.html` |
+
+Macro prelim notes (`econ/macroprelim/`, 12 files):
+
+| File |
+|------|
+| `econ/macroprelim/Chari/privatemoney.html` |
+| `econ/macroprelim/Chari/productionrisk.html` |
+| `econ/macroprelim/Chari/sustainabledebt.html` |
+| `econ/macroprelim/Concepts/envelope.html` |
+| `econ/macroprelim/Concepts/flowchartkey/FlowChartKey.html` |
+| `econ/macroprelim/Jones/HumanCapital.html` |
+| `econ/macroprelim/Jones/dynamicprogramming.html` |
+| `econ/macroprelim/Kehoe/Search.html` |
+| `econ/macroprelim/Kehoe/crossingProof.html` |
+| `econ/macroprelim/Kehoe/dp.html` |
+| `econ/macroprelim/prelimindex.html` |
+| `econ/macroprelim/roadmapTODO.html` |
+
+Trade prelim notes (`econ/tradeprelim/`, 17 files):
+
+| File |
+|------|
+| `econ/tradeprelim/amador/multipleborrowers.html` |
+| `econ/tradeprelim/fitzgerald/armingtongravity.html` |
+| `econ/tradeprelim/fitzgerald/melitzottaviano.html` |
+| `econ/tradeprelim/fitzgerald/melitzottaviano/melitzottaviano.html` |
+| `econ/tradeprelim/fitzgerald/melitzottaviano_problem.html` |
+| `econ/tradeprelim/fitzgerald/melitzottaviano_solution.html` |
+| `econ/tradeprelim/kehoe/LBD/LBDconcepts - Copy (2).html` |
+| `econ/tradeprelim/kehoe/LBD/LBDconcepts - Copy (3).html` |
+| `econ/tradeprelim/kehoe/LBD/LBDconcepts.html` |
+| `econ/tradeprelim/kehoe/LBD/LBDprelim.html` |
+| `econ/tradeprelim/kehoe/LBD/LBDprelimSolutionA.html` |
+| `econ/tradeprelim/kehoe/LBD/learningbydoingConcepts - Copy.html` |
+| `econ/tradeprelim/kehoe/hecksherohlin.html` |
+| `econ/tradeprelim/kehoe/learningbydoing.html` |
+| `econ/tradeprelim/kehoe/monopolisticcompetition.html` |
+| `econ/tradeprelim/kehoe/self-fulfillingdebt.html` |
+| `econ/tradeprelim/prelimindex.html` |
+
+Research notes (`econ/research/`, 14 files):
+
+| File |
+|------|
+| `econ/research/ContagionThing/gradientPlotter/adjustForN.html` |
+| `econ/research/ContagionThing/gradientPlotter/blank.html` |
+| `econ/research/ContagionThing/gradientPlotter/blank2.html` |
+| `econ/research/ContagionThing/notes about where to go.html` |
+| `econ/research/ContagionThing/septPresentation/outline.md` |
+| `econ/research/ContagionThing/septPresentation/outlineCode.html` |
+| `econ/research/arrowroot/arrownotes.html` |
+| `econ/research/arrowroot/arrowrootnotes.html` |
+| `econ/research/arrowroot/rootnotes.html` |
+| `econ/research/farmingToy/farmingToy.html` |
+| `econ/research/farmingToy/farmingToyExperimentalFormat.html` |
+| `econ/research/halfbakedideas.html` |
+| `econ/research/readingnotes.html` |
+| `econ/research/talkNotes.html` |
+
+Other standalone files (11 files):
+
+| File | Notes |
+|------|-------|
+| `202/graphs/3102 Graphs - Robert Winslow.html` | Legacy kgjs graph page |
+| `202/graphs/AD_AS, The Labor Market, and the Phillips Curve - EconGraphs.html` | Saved EconGraphs page |
+| `3102/_solow.md` | No frontmatter; underscore-prefixed (draft) |
+| `330/hw/hw5/Econ 330 HW 5.html.LyXconv/Econ_330_HW_5.html` | LyX-converted homework |
+| `404.html` | Custom 404 page |
+| `econ/nonsense/mathsymbols.html` | Math symbols reference |
+| `econ/presentations/biglisthtml.html` | Presentation list |
+| `econ/presentations/percolationSlides.html` | Reveal.js slides |
+| `econ/teaching/3012.html` | Likely a typo for 3102 |
+| `js/katex/katexTest.html` | KaTeX test page |
+| `teaching/calendar_creator.html` | Calendar tool |
+
 ## TODOs
 
 - [ ] Examine whether the `width: 0px` scrollbar trick (commented out in `kineticgraphs.css:14-17`) is used anywhere in the consuming sites, and whether it should be removed or restored.
