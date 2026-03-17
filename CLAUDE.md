@@ -200,13 +200,16 @@ These are things noticed during the code review. Tagged to distinguish them from
 - [ ] Sync KaTeX versions. `katex.html` uses v0.16.22 but `remark_slides.html` has v0.16.7 hardcoded inline.
 - [ ] Update MathJax. `mathjax.html` loads a beta (v4.0.0-beta.4). MathJax 4 has since had stable releases.
 - [ ] Extend `modified` fallback to the footer. The `post` layout handles `modified` as an alias for `last_modified_date`, but the footer in `default.html` doesn't. A one-line Liquid `assign` would fix this.
+- [ ] Consider deprecating `last_modified_date` in favor of the shorter `modified`. Investigate whether we can reassign the variable early in the processing chain (e.g., in `default.html` or a Liquid `assign`) so downstream code only needs to check one name. Currently the footer requires `page.last_modified_date` specifically. If we settle on `modified`, Claude could do a batch replacement of `last_modified_date` across all five consuming sites' frontmatter.
 - [ ] Guard the `<title>` tag. Add a conditional so pages without a `title` get just the site title instead of ` - Site Title`.
 - [ ] Clean up `_config.yml` defaults. The theme's own config still has the original JTD author's URLs, GA tracking ID, and footer content. These are overridden by consuming sites but are misleading if someone builds the theme repo directly for testing.
 - [ ] Consider making `extrabits.css` and `kineticgraphs.css` opt-in via config rather than always-on. `extrabits.css` is loaded but empty; `kineticgraphs.css` is loaded on every site but only relevant to sites using kgjs.
 - [ ] Verify color contrast for accessibility. The light mode's `--textcolor: #55525B` on `--basecolor: #fdf6e3` should be checked against WCAG AA standards.
+- [ ] Consider changing the default math renderer from `"katex"` to `"none"` so that KaTeX is only loaded on pages that explicitly request it via `math: katex`. This would cut ~300KB from every page that doesn't use math (e.g., most of `games`). Would require a batch addition of `math: katex` to pages across consuming sites that actually use math.
 - [ ] Fix the double KaTeX conflict. Pages that load kgjs (which bundles its own KaTeX) stutter and lock up when the theme also loads KaTeX. Either set `math: none` on those pages, or make the theme's KaTeX loading detect an existing instance.
 - [ ] Consider adding `page_excerpts` support to the theme, or document that consuming sites should remove the setting. It is set on some sites but the theme never reads it.
 - [ ] Consider adding a unified `hidden` frontmatter variable that sets both `nav_exclude` and `search_exclude` in one go. Currently, hiding a page from both navigation and search requires remembering to set two separate flags, which is easy to forget.
+- [ ] Consider deprecating the dark mode CSS theme or overhauling the color scheme in `colorscheme.css`.
 
 ## Extended Notes
 

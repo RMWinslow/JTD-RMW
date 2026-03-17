@@ -9,7 +9,7 @@
 <link rel="stylesheet" href="{{ '/assets/css/compiled-jtd-style.css' | relative_url }}">
 
 
-<title>{{ page.title }} - {{ site.title }}</title>
+{% if page.title %}<title>{{ page.title }} - {{ site.title }}</title>{% else %}<title>{{ site.title }}</title>{% endif %}
 
 
 {% if site.ga_tracking != nil %}
