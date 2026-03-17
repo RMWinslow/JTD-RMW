@@ -47,7 +47,7 @@ imagepreview
 : A full URL to an image for social media previews. Sets the `og:image` meta property.
 
 math
-: Which math renderer to load: `"katex"` (default), `"mathjax"`, or `"none"` to disable.
+: Which math renderer to load: `"katex"`, `"mathjax"`, or `"none"`. Defaults to `"none"` — set this on the page, in the layout, or in `_config.yml` to enable rendering.
 
 nav_exclude
 : renders the page but hides it from the sidebar and parent TOCs

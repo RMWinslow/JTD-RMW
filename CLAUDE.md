@@ -22,7 +22,7 @@ The layout inheritance chain is: `vendor/compress` → `table_wrappers` → `def
 
 ### Includes (`_includes/`)
 
-- **`head.html`** — The `<head>` element. Loads the compiled JTD stylesheet, sets the page `<title>`, includes Google Analytics (if configured), loads the math renderer (KaTeX by default, MathJax if requested, or neither if disabled), loads the Lunr search script, and includes the SEO and custom head partials.
+- **`head.html`** — The `<head>` element. Loads the compiled JTD stylesheet, sets the page `<title>`, includes Google Analytics (if configured), loads a math renderer if one is requested (no math loaded by default), loads the Lunr search script, and includes the SEO and custom head partials.
 - **`head_seo.html`** — Outputs Open Graph meta tags (`og:title`, `og:description`, `og:image`, `og:url`, canonical URL, and author). Uses `page.description`, `page.imagepreview`, `site.title`, `site.author`, `site.url`, and `site.baseurl`.
 - **`head_custom.html`** — Empty by default. Consuming sites can override this to inject custom `<head>` content (additional stylesheets, scripts, etc.).
 - **`header_custom.html`** — Empty by default. Injected into the main content area header, after the search bar.
@@ -115,10 +115,10 @@ These are all the YAML frontmatter variables that JTD-RMW recognizes on individu
 
 ### Math Rendering
 
-**`math`** — Controls which math rendering engine is loaded for this page. The resolution order is: page frontmatter → layout frontmatter → `site.math` in `_config.yml` → `"katex"` (the hardcoded default).
-- `"katex"` (default) — Loads KaTeX with auto-render. Supports `$...$` (inline), `$$...$$` (display), `\(...\)` (inline), and `\[...\]` (display).
+**`math`** — Controls which math rendering engine is loaded for this page. The resolution order is: page frontmatter → layout frontmatter → `site.math` in `_config.yml` → `"none"` (the hardcoded default).
+- `"katex"` — Loads KaTeX with auto-render. Supports `$...$` (inline), `$$...$$` (display), `\(...\)` (inline), and `\[...\]` (display).
 - `"mathjax"` — Loads MathJax 4 beta. Supports `$...$` (inline) and `\(...\)` (inline).
-- `"none"` (or any other unrecognized value) — Disables math rendering entirely for the page. Useful for pages with content that conflicts with `$` delimiters.
+- `"none"` (default, or any other unrecognized value) — No math renderer is loaded. Use this (or simply omit the setting) on pages that don't need math.
 
 ### Table Wrapping
 
@@ -207,8 +207,8 @@ These are things noticed during the code review. Tagged to distinguish them from
 - [ ] Clean up `_config.yml` defaults. The theme's own config still has the original JTD author's URLs, GA tracking ID, and footer content. These are overridden by consuming sites but are misleading if someone builds the theme repo directly for testing.
 - [ ] Consider making `extrabits.css` and `kineticgraphs.css` opt-in via config rather than always-on. `extrabits.css` is loaded but empty; `kineticgraphs.css` is loaded on every site but only relevant to sites using kgjs.
 - [ ] Verify color contrast for accessibility. The light mode's `--textcolor: #55525B` on `--basecolor: #fdf6e3` should be checked against WCAG AA standards.
-- [ ] Consider changing the default math renderer from `"katex"` to `"none"` so that KaTeX is only loaded on pages that explicitly request it via `math: katex`. This would cut ~300KB from every page that doesn't use math (e.g., most of `games`). Would require a batch addition of `math: katex` to pages across consuming sites that actually use math.
-- [ ] Fix the double KaTeX conflict. Pages that load kgjs (which bundles its own KaTeX) stutter and lock up when the theme also loads KaTeX. Either set `math: none` on those pages, or make the theme's KaTeX loading detect an existing instance.
+- [x] Changed the default math renderer to `"none"`. KaTeX is now only loaded on pages that explicitly set `math: katex` or on sites with `math: katex` in `_config.yml`. Added `math: katex` to all posts pages that use math, and set `math: katex` site-wide on `bib`.
+- [ ] Fix the double KaTeX conflict. A few pages in `RMWinslow.github.io` use kgjs (which bundles its own KaTeX) and stutter when the theme also loads KaTeX. The default-off change reduces the risk, but those specific pages should either set `math: none` or the theme's KaTeX loading should detect an existing KaTeX instance before initializing.
 - [ ] Consider adding `page_excerpts` support to the theme, or document that consuming sites should remove the setting. It is set on some sites but the theme never reads it.
 - [ ] Consider adding a unified `hidden` frontmatter variable that sets both `nav_exclude` and `search_exclude` in one go. Currently, hiding a page from both navigation and search requires remembering to set two separate flags, which is easy to forget.
 - [ ] Consider deprecating the dark mode CSS theme or overhauling the color scheme in `colorscheme.css`.
@@ -220,6 +220,15 @@ The cross-site audit results (navigation sitemaps, broken links, orphaned files,
 ## Session Log
 
 Keep this section updated with what was accomplished in each Claude session.
+
+### 2026-03-17
+
+- Fixed the image div in `circe/index.md` to use `class="aside-like" style="max-width: 280px;"` instead of the old inline float, so the title page image stays small on mobile.
+- Changed the theme's hardcoded math default from `"katex"` to `"none"` in `head.html`. Updated the README and CLAUDE.md to reflect this.
+- Added `math: katex` to `bib/_config.yml` (site-wide, since bib is math-heavy).
+- Added `math: katex` to all nine `posts` pages that use KaTeX: `econ/timeusechange.md`, `markdown.md`, `numbers/horizon.md`, the five `nature/birdup/` scoring pages, and the `_drafts/special-relativity.md` draft.
+- Noted that kgjs is only used on a few pages in `RMWinslow.github.io`, not on the games site as previously assumed.
+- Verified that all 9 math-using pages in the `posts` repo have `math: katex` in their frontmatter. No files were missed.
 
 ### 2026-03-16 (session 2)
 
