@@ -189,15 +189,41 @@ These are things noticed during the code review. Tagged to distinguish them from
 - **Use natural language in all commit messages, PR descriptions, comments, and documentation.** Write in complete sentences. Do not drop articles ("a", "the", "an") or use telegraphic shorthand. For example, write "Add the missing KaTeX stylesheet to the post layout" rather than "add missing KaTeX stylesheet post layout."
 - Keep commit messages concise but grammatically complete.
 
+## Theme TODOs
+
+- [ ] Examine whether the `width: 0px` scrollbar trick (commented out in `kineticgraphs.css:14-17`) is used anywhere in the consuming sites, and whether it should be removed or restored.
+- [ ] Index the differences between JTD-RMW and `just-the-docs-tweaked` to understand what would be involved in migrating the sites that still use the older fork (`3102old`, `tones`).
+- [ ] Deprecate and remove the `remark_slides` layout. The Remark.js slide engine required too many workarounds (backslash escaping, underscore conflicts with filenames, separate KaTeX version). The two pages that use it in `RMWinslow.github.io` (`3102/measurement-money-slides` and `slides/remark_formattest`) need to be either deleted or migrated to the standalone `slides` repo.
+- [ ] Remove `great_grand_parent` support from `nav_details.html`. It is never used by any page across all five sites, and the breadcrumbs in `default.html` don't support it anyway. The deepest hierarchy in practice is three levels.
+- [ ] Remove or repurpose `nav.html`. It's unused — `default.html` uses `nav_details.html`. Either delete it or document it as an alternative that consuming sites can swap in.
+- [ ] Consolidate identical layouts. `page.html`, `home.html`, and `about.html` are byte-for-byte identical. Consider whether they should all just be symlinks or whether the semantic distinction is worth maintaining.
+- [ ] Sync KaTeX versions. `katex.html` uses v0.16.22 but `remark_slides.html` has v0.16.7 hardcoded inline.
+- [ ] Update MathJax. `mathjax.html` loads a beta (v4.0.0-beta.4). MathJax 4 has since had stable releases.
+- [ ] Extend `modified` fallback to the footer. The `post` layout handles `modified` as an alias for `last_modified_date`, but the footer in `default.html` doesn't. A one-line Liquid `assign` would fix this.
+- [ ] Guard the `<title>` tag. Add a conditional so pages without a `title` get just the site title instead of ` - Site Title`.
+- [ ] Clean up `_config.yml` defaults. The theme's own config still has the original JTD author's URLs, GA tracking ID, and footer content. These are overridden by consuming sites but are misleading if someone builds the theme repo directly for testing.
+- [ ] Consider making `extrabits.css` and `kineticgraphs.css` opt-in via config rather than always-on. `extrabits.css` is loaded but empty; `kineticgraphs.css` is loaded on every site but only relevant to sites using kgjs.
+- [ ] Verify color contrast for accessibility. The light mode's `--textcolor: #55525B` on `--basecolor: #fdf6e3` should be checked against WCAG AA standards.
+- [ ] Fix the double KaTeX conflict. Pages that load kgjs (which bundles its own KaTeX) stutter and lock up when the theme also loads KaTeX. Either set `math: none` on those pages, or make the theme's KaTeX loading detect an existing instance.
+- [ ] Consider adding `page_excerpts` support to the theme, or document that consuming sites should remove the setting. It is set on some sites but the theme never reads it.
+- [ ] Consider adding a unified `hidden` frontmatter variable that sets both `nav_exclude` and `search_exclude` in one go. Currently, hiding a page from both navigation and search requires remembering to set two separate flags, which is easy to forget.
+
 ## Extended Notes
 
-The audit results, TODOs, consuming sites inventory, and audit ideas have been moved to `claude_audits.md` to keep this file from getting too large.
+The cross-site audit results (navigation sitemaps, broken links, orphaned files, consuming sites inventory, and site-specific TODOs) are in `claude_audits.md`. That file is intended to be moved to the `RMWinslow.github.io` repo since most of its content concerns the consuming sites rather than the theme itself.
 
 ## Session Log
 
 Keep this section updated with what was accomplished in each Claude session.
 
-### 2026-03-16
+### 2026-03-16 (session 2)
+
+- Scanned all five active JTD-RMW sites for files not in the navigation trees. Found 0 orphans in circe, 1 in bib, 8 in games, 35 in posts, and 110 in RMWinslow.github.io (mostly legacy pre-Jekyll HTML).
+- Split theme-specific TODOs and audit ideas into CLAUDE.md; left cross-site audit results in `claude_audits.md` for the user to move to the github.io repo.
+- Added `nav_exclude`/`search_exclude` frontmatter to the audit file.
+- Added a TODO to consider a unified `hidden` frontmatter variable.
+
+### 2026-03-16 (session 1)
 
 - Created this CLAUDE.md file to establish project conventions and provide context for future sessions.
 - Began indexing the repo structure and understanding the theme's custom features.
@@ -205,7 +231,7 @@ Keep this section updated with what was accomplished in each Claude session.
 - Thoroughly documented the entire repo: every layout, include, CSS file, JS file, and asset, with natural language descriptions.
 - Documented all page frontmatter variables and site configuration settings with full descriptions and behavior details.
 - Identified several potential issues (KaTeX version mismatch between layouts, unused `nav.html`, `modified` alias inconsistency, stale `_config.yml` defaults, etc.).
-- Audited layout usage across all five active JTD-RMW sites (see below).
+- Audited layout usage across all five active JTD-RMW sites.
 - Built full navigation sitemaps for all five sites and identified 11 hierarchy issues (orphaned parents, phantom parents, duplicate titles, missing HC flags, missing grand_parents).
 - Scanned all five sites for broken internal links. Found 0 in circe, 4 in bib, 3 in games, 11 in posts, and 31 in RMWinslow.github.io (mostly a systematic sakura.css relative path issue in older HTML files).
 

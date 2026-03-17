@@ -1,3 +1,7 @@
+---
+nav_exclude: true
+search_exclude: true
+---
 
 ## Audit Results
 
@@ -680,19 +684,15 @@ Other standalone files (11 files):
 
 ## TODOs
 
-- [ ] Examine whether the `width: 0px` scrollbar trick (commented out in `kineticgraphs.css:14-17`) is used anywhere in the consuming sites, and whether it should be removed or restored.
 - [x] Index the websites that consume this theme as a remote theme. (Done — see the inventory below.)
 - [ ] Clean up or archive obsolete repos (e.g. `jtd-test-style`, `latexpagetest`, `just-the-docs-tweaked`, and any other repos that are no longer actively used).
-- [ ] Index the differences between JTD-RMW and `just-the-docs-tweaked` to understand what would be involved in migrating the sites that still use the older fork (`3102old`, `tones`).
 - [ ] Add `url: "https://www.rmwinslow.com"` to the **bib** site's `_config.yml`. Without it, the canonical URL and `og:url` meta tags use `http://` instead of `https://`, which is bad for SEO.
 - [ ] Add `author: Robert Winslow` to the **bib** site's `_config.yml`. Currently the `<meta property="author">` tag renders empty.
 - [ ] Audit the other consuming sites (`games`, `RMWinslow.github.io`) for the same `url`/`author` gaps.
-- [ ] Deprecate and remove the `remark_slides` layout from JTD-RMW. The Remark.js slide engine required too many workarounds (backslash escaping, underscore conflicts with filenames, separate KaTeX version). The two pages that use it in `RMWinslow.github.io` (`3102/measurement-money-slides` and `slides/remark_formattest`) need to be either deleted or migrated to the standalone `slides` repo.
 - [ ] Fix the 11 navigation hierarchy issues found in the sitemap audit:
   - **posts**: Fix 4 orphaned parent refs (`"hidden"` x2, `"Media"`, `"_Media"`), rename one of the duplicate "Working from Home" pages, add missing `grand_parent` to "X in the ABCs" and "Visual Artists", remove or populate phantom parent "Unicode Characters".
   - **RMWinslow.github.io**: Remove or populate 3 phantom parents ("Competitive Equilibrium", "Aggregate Measurement", "Money and Banking") — these have `has_children: true` but no children.
   - **games**: Set `has_children: true` on "Lasers & Feelings" (currently `false` but has 3 children).
-- [ ] Remove `great_grand_parent` support from `nav_details.html`. It is never used by any page across all five sites, and the breadcrumbs in `default.html` don't support it anyway. The deepest hierarchy in practice is three levels.
 
 ## Consuming Sites Inventory
 
@@ -764,24 +764,8 @@ These are potential audits that could be run across the theme and consuming site
 - **Missing or broken images.** Image references that don't resolve, especially in older posts.
 - **Redirect chains.** Sites using `jekyll-redirect-from` may have accumulated stale redirects that could be cleaned up.
 
-### Theme-level cleanup — PARTIALLY DONE (dead layouts, unused nav.html, KaTeX version mismatch identified; canonical URL fix applied)
-
-- **Remove or repurpose `nav.html`.** It's unused — `default.html` uses `nav_details.html`. Either delete it or document it as an alternative that consuming sites can swap in.
-- **Consolidate identical layouts.** `page.html`, `home.html`, and `about.html` are byte-for-byte identical. Consider whether they should all just be symlinks or whether the semantic distinction is worth maintaining.
-- **Sync KaTeX versions.** `katex.html` uses v0.16.22 but `remark_slides.html` has v0.16.7 hardcoded inline.
-- **Update MathJax.** `mathjax.html` loads a beta (v4.0.0-beta.4). MathJax 4 has since had stable releases.
-- **Extend `modified` fallback to the footer.** The `post` layout handles `modified` as an alias for `last_modified_date`, but the footer in `default.html` doesn't. A one-line Liquid `assign` would fix this.
-- **Guard the `<title>` tag.** Add a conditional so pages without a `title` get just the site title instead of ` - Site Title`.
-- **Clean up `_config.yml` defaults.** The theme's own config still has the original JTD author's URLs, GA tracking ID, and footer content. These are overridden by consuming sites but are misleading if someone builds the theme repo directly for testing.
-
-### Accessibility
-
-- **Color contrast.** The `colorscheme.css` dark mode uses `--textcolor: #fee` on `--basecolor: #000` — likely fine, but the light mode's `--textcolor: #55525B` on `--basecolor: #fdf6e3` should be verified against WCAG AA standards.
-- **Alt text in templates.** The SVG icons in `default.html` have `<title>` elements (good), but any images injected via the logo or content should be checked.
-- **Keyboard navigation.** The `<details>`-based nav in `nav_details.html` should be keyboard-accessible by default, but worth verifying with a screen reader.
-
 ### Performance
 
-- **KaTeX on every page.** The default math engine is KaTeX, which loads ~300KB of CSS + JS. On sites where most pages don't use math, a site-level `math: none` default with per-page opt-in (`math: katex`) would be lighter.
 - **Search index size.** On large sites like `posts`, the Lunr search index (`search-data.json`) can get very large. Pages that don't need to be searchable could use `search_exclude: true` to trim it.
-- **Unused CSS.** `extrabits.css` is loaded but empty. `kineticgraphs.css` is loaded on every site but only relevant to sites using kgjs. Consider making these opt-in via config rather than always-on.
+
+Theme-level cleanup, accessibility, and performance items related to the theme's own code have been moved to the JTD-RMW repo's `CLAUDE.md`.
