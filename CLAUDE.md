@@ -192,7 +192,8 @@ These are things noticed during the code review. Tagged to distinguish them from
 
 ## Theme TODOs
 
-- [ ] Remove the dead Sass pipeline remnants: `_includes/css/just-the-docs.scss.liquid`, `_includes/css/custom.scss.liquid`, and the `_sass` reference in `just-the-docs.gemspec` line 13. Then strip the vestigial `!important` flags from `font-size` declarations in `compiled-jtd-style.css` (~30 instances).
+- [x] Remove the dead Sass pipeline remnants: deleted `_includes/css/just-the-docs.scss.liquid` and `_includes/css/custom.scss.liquid`, and removed the `_sass` reference from `just-the-docs.gemspec`. The `$logo` Sass variable that `just-the-docs.scss.liquid` set was replaced with a direct `<img>` tag in `title.html`.
+- [ ] Audit the ~30 `!important` flags on `font-size` declarations in `compiled-jtd-style.css` — they may be fighting internal specificity battles within the file, not just the dead Sass pipeline. Each one needs to be checked individually before removal.
 - [ ] Examine whether the `width: 0px` scrollbar trick (commented out in `kineticgraphs.css:14-17`) is used anywhere in the consuming sites, and whether it should be removed or restored.
 - [ ] Index the differences between JTD-RMW and `just-the-docs-tweaked` to understand what would be involved in migrating the sites that still use the older fork (`3102old`, `tones`).
 - [ ] Deprecate and remove the `remark_slides` layout. The Remark.js slide engine required too many workarounds (backslash escaping, underscore conflicts with filenames, separate KaTeX version). The two pages that use it in `RMWinslow.github.io` (`3102/measurement-money-slides` and `slides/remark_formattest`) need to be either deleted or migrated to the standalone `slides` repo.
@@ -200,10 +201,10 @@ These are things noticed during the code review. Tagged to distinguish them from
 - [ ] Remove or repurpose `nav.html`. It's unused — `default.html` uses `nav_details.html`. Either delete it or document it as an alternative that consuming sites can swap in.
 - [ ] Consolidate identical layouts. `page.html`, `home.html`, and `about.html` are byte-for-byte identical. Consider whether they should all just be symlinks or whether the semantic distinction is worth maintaining.
 - [ ] Sync KaTeX versions. `katex.html` uses v0.16.22 but `remark_slides.html` has v0.16.7 hardcoded inline.
-- [ ] Update MathJax. `mathjax.html` loads a beta (v4.0.0-beta.4). MathJax 4 has since had stable releases.
-- [ ] Extend `modified` fallback to the footer. The `post` layout handles `modified` as an alias for `last_modified_date`, but the footer in `default.html` doesn't. A one-line Liquid `assign` would fix this.
+- [ ] Update MathJax. `mathjax.html` loads a beta (v4.0.0-beta.4). MathJax 4 has since had stable releases. Note: v4 beta was chosen because MathJax v3 doesn't support line breaks. Before upgrading, verify that stable v4 releases still support line breaks.
+- [x] Extend `modified` fallback to the footer. The `post` layout handles `modified` as an alias for `last_modified_date`, but the footer in `default.html` didn't. Fixed with a `{% assign footer_modified = page.last_modified_date | default: page.modified %}` in the footer block.
 - [ ] Consider deprecating `last_modified_date` in favor of the shorter `modified`. Investigate whether we can reassign the variable early in the processing chain (e.g., in `default.html` or a Liquid `assign`) so downstream code only needs to check one name. Currently the footer requires `page.last_modified_date` specifically. If we settle on `modified`, Claude could do a batch replacement of `last_modified_date` across all five consuming sites' frontmatter.
-- [ ] Guard the `<title>` tag. Add a conditional so pages without a `title` get just the site title instead of ` - Site Title`.
+- [x] Guard the `<title>` tag. Add a conditional so pages without a `title` get just the site title instead of ` - Site Title`.
 - [ ] Clean up `_config.yml` defaults. The theme's own config still has the original JTD author's URLs, GA tracking ID, and footer content. These are overridden by consuming sites but are misleading if someone builds the theme repo directly for testing.
 - [ ] Consider making `extrabits.css` and `kineticgraphs.css` opt-in via config rather than always-on. `extrabits.css` is loaded but empty; `kineticgraphs.css` is loaded on every site but only relevant to sites using kgjs.
 - [ ] Verify color contrast for accessibility. The light mode's `--textcolor: #55525B` on `--basecolor: #fdf6e3` should be checked against WCAG AA standards.
