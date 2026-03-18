@@ -10,7 +10,8 @@
       "Read(//c/Users/RMW/Documents/GitHub/**)",
       "Bash(done)",
       "Bash(grep:*)",
-      "WebSearch"
+      "WebSearch",
+      "WebFetch"
     ]
   }
 }
