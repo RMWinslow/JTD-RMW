@@ -1,0 +1,16 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:raw.githubusercontent.com)",
+      "WebFetch(domain:www.rmwinslow.com)",
+      "WebFetch(domain:blog.rmwinslow.com)",
+      "Bash(curl:*)",
+      "Bash(for site:*)",
+      "Bash(do echo:*)",
+      "Read(//c/Users/RMW/Documents/GitHub/**)",
+      "Bash(done)",
+      "Bash(grep:*)",
+      "WebSearch"
+    ]
+  }
+}

@@ -212,10 +212,48 @@ These are things noticed during the code review. Tagged to distinguish them from
 - [ ] Consider adding `page_excerpts` support to the theme, or document that consuming sites should remove the setting. It is set on some sites but the theme never reads it.
 - [ ] Consider adding a unified `hidden` frontmatter variable that sets both `nav_exclude` and `search_exclude` in one go. Currently, hiding a page from both navigation and search requires remembering to set two separate flags, which is easy to forget.
 - [ ] Consider deprecating the dark mode CSS theme or overhauling the color scheme in `colorscheme.css`.
+- [ ] Make the mobile hamburger menu work without JavaScript. Currently the sidebar is hidden at narrow viewport widths and only revealed by JS adding `.nav-open` on click. A CSS-only approach (e.g., a `<details>`/`<summary>` wrapper or a checkbox hack) would let the site degrade gracefully to pure HTML+CSS. The navigation tree itself already uses `<details>` elements and doesn't need JS. The only other thing `just-the-docs.js` does besides the hamburger toggle is power the Lunr search UI, which degrades silently (the search input just does nothing).
+- [ ] Replace the `scaleX(-1)` double-flip hack for the nav disclosure triangles with a proper `::after` approach. The current hack (`compiled-jtd-style.css:1005-1020`) flips the entire `<summary>` horizontally to move the marker to the right, then flips the child link back. This is fragile and unintuitive. The replacement should use `::after` with absolute positioning. Needs a cross-browser test page first (see below).
+- [ ] Set up Playwright MCP for browser testing. Install via `claude mcp add playwright npx @playwright/mcp@latest --headless`. Would allow Claude to navigate to locally-served Jekyll pages, take screenshots, and read console errors. Ruby/Jekyll are not currently installed on this machine and would also need to be set up.
+- [ ] Build a `<details>`/`<summary>` CSS test page to nail down the disclosure triangle approach before changing the nav. The test page should cover: (1) native marker behavior across browsers, (2) removing the marker with `list-style: none` + `::-webkit-details-marker { display: none }`, (3) `::after` replacement with absolute positioning, (4) `::after` with `transform: rotate()` animation on open, (5) `::marker` with `content` override (works in Chrome/Firefox, not Safari). This would be a standalone HTML file for manual testing, not part of the theme.
 
 ## Extended Notes
 
 The cross-site audit results (navigation sitemaps, broken links, orphaned files, consuming sites inventory, and site-specific TODOs) are in `claude_audits.md`. That file is intended to be moved to the `RMWinslow.github.io` repo since most of its content concerns the consuming sites rather than the theme itself.
+
+### Details/Summary Disclosure Triangle Research (2026-03-17)
+
+The nav menu's disclosure triangles currently use a `scaleX(-1)` double-flip hack to put the marker on the right side. The user previously tried `::after` pseudo-elements but they didn't work correctly. Research findings:
+
+**How browsers implement the disclosure triangle:**
+- **Firefox:** Uses `::marker` with `list-style-type: disclosure-closed/disclosure-open`. Removing it: `list-style: none`.
+- **Chrome:** Migrated from `::-webkit-details-marker` to `::marker` in Chrome 89. Both removal methods work.
+- **Safari:** Uses internal shadow DOM, only addressable via `::-webkit-details-marker`. Does **not** support `::marker` on `<summary>`. `list-style: none` alone does **not** remove the triangle.
+
+**Cross-browser marker removal requires both rules:**
+```css
+summary { list-style: none; }
+summary::-webkit-details-marker { display: none; }
+```
+
+**Key gotchas for `::after` replacement:**
+- Safari does not support `display: flex` on `<summary>` itself — flexbox layout is ignored. Workaround: wrap summary text in a child `<span>` and flex that, or use absolute positioning on the `::after` instead.
+- If you only use `list-style: none` without the `::-webkit-details-marker` rule, Safari shows both the native triangle and the `::after` — a double indicator.
+- `::marker` only allows a very restricted set of CSS properties: `content`, `color`, `font-*`, `white-space`, `direction`, `unicode-bidi`. No `background`, `width`, `height`, `transform`, or `position`.
+- Removing the native marker breaks screen reader state announcements in Firefox + VoiceOver (the triangle direction is the only state indicator).
+
+**Recommended replacement approach:** Remove marker with both rules, use `::after` with `position: absolute`. Use `details[open] > summary::after` to swap the character or apply `transform: rotate(90deg)` for animation. Avoid flexbox directly on `<summary>`.
+
+### Theme JavaScript Inventory (2026-03-17)
+
+`just-the-docs.js` does exactly three things:
+1. **Hamburger toggle** (`initNav`) — toggles `.nav-open` class on click. Only JS-dependent feature that affects usability.
+2. **Lunr search** (`initSearch`) — fetches `search-data.json` via XHR, builds the Lunr index, renders results, handles keyboard navigation. Degrades silently (search input does nothing without JS).
+3. **Theme switcher API** (`jtd.getTheme`/`jtd.setTheme`) — global functions for swapping CSS files at runtime. Never called by the theme itself; just a hook for consuming sites that want a theme picker.
+
+`_includes/js/custom.js` is empty. The nav tree collapsing is pure `<details>`/`<summary>` — no JS involved.
+
+**External resources loaded by the `default` layout:** All CSS and JS is self-hosted. The only external resources are conditional: Google Analytics (if `site.ga_tracking` is set), KaTeX from jsDelivr (if `math: katex`), and MathJax from jsDelivr (if `math: mathjax`). No external fonts.
 
 ## Session Log
 
@@ -229,6 +267,11 @@ Keep this section updated with what was accomplished in each Claude session.
 - Added `math: katex` to all nine `posts` pages that use KaTeX: `econ/timeusechange.md`, `markdown.md`, `numbers/horizon.md`, the five `nature/birdup/` scoring pages, and the `_drafts/special-relativity.md` draft.
 - Noted that kgjs is only used on a few pages in `RMWinslow.github.io`, not on the games site as previously assumed.
 - Verified that all 9 math-using pages in the `posts` repo have `math: katex` in their frontmatter. No files were missed.
+- Audited all JavaScript and external assets loaded by the theme. Documented the full inventory in Extended Notes.
+- Researched `<details>`/`<summary>` disclosure triangle styling across browsers (Safari's `::-webkit-details-marker` vs. Firefox/Chrome's `::marker`, flexbox-on-summary bugs, accessibility implications of marker removal). Documented findings in Extended Notes.
+- Identified that the `scaleX(-1)` double-flip hack in the nav CSS should be replaced with a `::after` + absolute positioning approach. Added TODOs for building a standalone HTML test page and doing the replacement.
+- Added TODO for making the mobile hamburger menu work without JS.
+- Next step: build a standalone HTML test page with several disclosure triangle CSS approaches for manual browser testing, then use results to replace the scaleX hack in the nav.
 
 ### 2026-03-16 (session 2)
 
