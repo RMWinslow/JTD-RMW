@@ -217,6 +217,13 @@ These are things noticed during the code review. Tagged to distinguish them from
 - [ ] Make the mobile hamburger menu work without JavaScript. Currently the sidebar is hidden at narrow viewport widths and only revealed by JS adding `.nav-open` on click. A CSS-only approach (e.g., a `<details>`/`<summary>` wrapper or a checkbox hack) would let the site degrade gracefully to pure HTML+CSS. The navigation tree itself already uses `<details>` elements and doesn't need JS. The only other thing `just-the-docs.js` does besides the hamburger toggle is power the Lunr search UI, which degrades silently (the search input just does nothing).
 - [ ] Replace the `scaleX(-1)` double-flip hack for the nav disclosure triangles with a proper `::after` approach. The current hack (`compiled-jtd-style.css:1005-1020`) flips the entire `<summary>` horizontally to move the marker to the right, then flips the child link back. This is fragile and unintuitive. The replacement should use `::after` with absolute positioning. Needs a cross-browser test page first (see below).
 - [ ] Set up Playwright MCP for browser testing. Install via `claude mcp add playwright npx @playwright/mcp@latest --headless`. Would allow Claude to navigate to locally-served Jekyll pages, take screenshots, and read console errors. Ruby/Jekyll are not currently installed on this machine and would also need to be set up.
+- [ ] Make nav menu titles truncate with a fade-out instead of wrapping to a new line. This will make the nav sidebar visually cleaner and more compact, especially as sections with longer page titles are added.
+- [ ] Investigate adding a custom kramdown parser plugin that recognizes `$...$`
+  as inline math (protecting content from markdown parsing). Kramdown only
+  recognizes `$$` natively. A working example exists in kramdown issue #672.
+  This would require switching consuming sites from GitHub Pages' default build
+  to a GitHub Actions workflow, since GitHub Pages runs in safe mode and blocks
+  custom plugins.
 - [ ] Build a `<details>`/`<summary>` CSS test page to nail down the disclosure triangle approach before changing the nav. The test page should cover: (1) native marker behavior across browsers, (2) removing the marker with `list-style: none` + `::-webkit-details-marker { display: none }`, (3) `::after` replacement with absolute positioning, (4) `::after` with `transform: rotate()` animation on open, (5) `::marker` with `content` override (works in Chrome/Firefox, not Safari). This would be a standalone HTML file for manual testing, not part of the theme.
 
 ## Extended Notes
