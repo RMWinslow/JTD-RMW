@@ -9,7 +9,7 @@
     --titlecolor: #27262b;
 }
 
-
+/* 
 @media (prefers-color-scheme: dark) {
     :root {
         --basecolor: #000;
@@ -21,3 +21,4 @@
         --titlecolor: #fff;
     }
 }
+*/
